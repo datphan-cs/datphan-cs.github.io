@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zayn</title>
-    <link>//localhost:1313/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Zayn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 23 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ASCIS CTF 2024 - LoveLinhaLot</title>
-      <link>//localhost:1313/posts/2024/2024-10-23-ascis-ctf/</link>
+      <link>http://localhost:1313/posts/2024/2024-10-23-ascis-ctf/</link>
       <pubDate>Wed, 23 Oct 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/posts/2024/2024-10-23-ascis-ctf/</guid>
+      <guid>http://localhost:1313/posts/2024/2024-10-23-ascis-ctf/</guid>
       <description>&lt;h1 id=&#34;ascis-ctf-2024---lovelinhalot-writeup&#34;&gt;ASCIS CTF 2024 - LoveLinhaLot Writeup&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Category: Crypto&lt;/li&gt;
@@ -430,10 +430,10 @@ Flag: ASCIS{d1d_1_g3t_My_r3v3ng3???}
     
     <item>
       <title>Hello Internet</title>
-      <link>//localhost:1313/posts/2024/hello/</link>
+      <link>http://localhost:1313/posts/2024/hello/</link>
       <pubDate>Wed, 23 Oct 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/posts/2024/hello/</guid>
+      <guid>http://localhost:1313/posts/2024/hello/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ll update my &amp;ldquo;About me&amp;rdquo; soon&amp;hellip;&lt;/p&gt;</description>
       <content>&lt;p&gt;I&amp;rsquo;ll update my &amp;ldquo;About me&amp;rdquo; soon&amp;hellip;&lt;/p&gt;
 </content>
