@@ -1,232 +1,528 @@
-<!doctype html><html lang=en><head><title>ASCIS CTF 2024 - LoveLinhaLot :: Zayn</title>
-<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/posts/2024/2024-10-23-ascis-ctf/><link rel=stylesheet href=/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css><link rel=stylesheet href=/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css><link rel=stylesheet href=/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css><link rel=stylesheet href=/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css><link rel=stylesheet href=/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css><link rel=stylesheet href=/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css><link rel=stylesheet href=/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css><link rel=stylesheet href=/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css><link rel=stylesheet href=/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css><link rel=stylesheet href=/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css><link rel=stylesheet href=/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css><link rel=stylesheet href=/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css><link rel=stylesheet href=/css/terminal.min.dd0bf9c7cacb24c1b0184f52f1869b274e06689557468cc7030ccf632328eb97.css><link rel=stylesheet href=/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css><link rel="shortcut icon" href=/favicon.png><link rel=apple-touch-icon href=/apple-touch-icon.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="ASCIS CTF 2024 - LoveLinhaLot"><meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante."><meta property="og:url" content="/posts/2024/2024-10-23-ascis-ctf/"><meta property="og:site_name" content="Zayn"><meta property="og:image" content="/posts/2024/2024-10-23-ascis-ctf/hello2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><meta property="article:published_time" content="2024-10-23 00:00:00 +0000 UTC"></head><body><div class="container center"><header class=header><div class=header__inner><div class=header__logo><a href=/><div class=logo>Zayn</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul></nav></header><div class=content><article class=post><h1 class=post-title><a href=/posts/2024/2024-10-23-ascis-ctf/>ASCIS CTF 2024 - LoveLinhaLot</a></h1><div class=post-meta><time class=post-date>2024-10-23</time><span class=post-author>Zayn</span></div><img src=/posts/2024/2024-10-23-ascis-ctf/hello2.jpg class=post-cover alt="ASCIS CTF 2024 - LoveLinhaLot" title="Cover Image"><div class=post-content><div><h1 id=ascis-ctf-2024---lovelinhalot-writeup>ASCIS CTF 2024 - LoveLinhaLot Writeup<a href=#ascis-ctf-2024---lovelinhalot-writeup class=hanchor arialabel=Anchor>#</a></h1><ul><li>Category: Crypto</li><li>Score: 999/1000</li><li>Solve: 2/63</li></ul><h2 id=source-code>Source code<a href=#source-code class=hanchor arialabel=Anchor>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> random
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> string
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> Crypto.Util.number <span style=color:#f92672>import</span> isPrime
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>BLOCK_LEN <span style=color:#f92672>=</span> <span style=color:#ae81ff>129</span>
-</span></span><span style=display:flex><span>CHARSET <span style=color:#f92672>=</span> string<span style=color:#f92672>.</span>ascii_uppercase <span style=color:#f92672>+</span> string<span style=color:#f92672>.</span>ascii_lowercase <span style=color:#f92672>+</span> string<span style=color:#f92672>.</span>digits
-</span></span><span style=display:flex><span>users, pwd_hashes <span style=color:#f92672>=</span> {}, []
-</span></span><span style=display:flex><span>allowed_blocks <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>q1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>57895665874783536962369408363969823887021530656373208299565102620846005563716018275834077962292286213472570266375824572745671541793458387390711613089471407869558363212866932533545785125988453002675479793768261480181947144057144941974626043243654731721303589851520175899531854692118423229594279209070187162279</span>
-</span></span><span style=display:flex><span>p1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> q1 <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>g1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>assert</span> isPrime(p1)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>assert</span> isPrime(q1)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>assert</span> pow(g1, q1, p1) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>x1 <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span> <span style=color:#f92672>**</span> <span style=color:#ae81ff>256</span>)
-</span></span><span style=display:flex><span>y1 <span style=color:#f92672>=</span> pow(g1, x1, p1)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>block_hash</span>(block, bases, a):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> zip(bases, block):
-</span></span><span style=display:flex><span>        a <span style=color:#f92672>=</span> a <span style=color:#f92672>*</span> pow(x, y, p1) <span style=color:#f92672>%</span> p1
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>secure_hash</span>(data, token, is_login <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> len(data) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&gt;=</span> BLOCK_LEN, <span style=color:#e6db74>&#34;Invalid Length&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> len(data) <span style=color:#f92672>%</span> BLOCK_LEN <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
-</span></span><span style=display:flex><span>        data <span style=color:#f92672>+=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\x80</span><span style=color:#e6db74>&#39;</span>
-</span></span><span style=display:flex><span>        data <span style=color:#f92672>+=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\x00</span><span style=color:#e6db74>&#39;</span> <span style=color:#f92672>*</span> (BLOCK_LEN <span style=color:#f92672>-</span> len(data) <span style=color:#f92672>%</span> BLOCK_LEN <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>    blocks <span style=color:#f92672>=</span> [data[i:i <span style=color:#f92672>+</span> BLOCK_LEN] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(data), BLOCK_LEN)]
-</span></span><span style=display:flex><span>    bases <span style=color:#f92672>=</span> [pow(g1, x, p1) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> token] <span style=color:#f92672>+</span> [g1]
-</span></span><span style=display:flex><span>    yu_1 <span style=color:#f92672>=</span> y1
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> block <span style=color:#f92672>in</span> blocks:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> all(x <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> block[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]):
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;No cheese this time&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> is_login:
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> block <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> allowed_blocks:
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;Invalid block&#34;</span>)
-</span></span><span style=display:flex><span>        yu_1 <span style=color:#f92672>=</span> block_hash(block, bases, yu_1)
-</span></span><span style=display:flex><span>        allowed_blocks<span style=color:#f92672>.</span>append(block)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> yu_1
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>register</span>(username, password):
-</span></span><span style=display:flex><span>    token <span style=color:#f92672>=</span> [random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>1</span>, q1 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(BLOCK_LEN <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> username <span style=color:#f92672>in</span> users:
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;Username already exists&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>    pwd_hash <span style=color:#f92672>=</span> secure_hash(password, token)
-</span></span><span style=display:flex><span>    users[username] <span style=color:#f92672>=</span> token
-</span></span><span style=display:flex><span>    pwd_hashes<span style=color:#f92672>.</span>append(pwd_hash)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>login</span>(username, password):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> username <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> users:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>    token <span style=color:#f92672>=</span> users[username]
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>:
-</span></span><span style=display:flex><span>        password<span style=color:#f92672>.</span>decode()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span>:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>    pwd_hash <span style=color:#f92672>=</span> secure_hash(password, token, <span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> pwd_hash <span style=color:#f92672>in</span> pwd_hashes
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>breach</span>(username):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> username <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> users:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> users[username]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>menu</span>():
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;1. Register&#34;</span>)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;2. Login&#34;</span>)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;3. Exit&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>():
-</span></span><span style=display:flex><span>    admin_username <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;admin&#34;</span>
-</span></span><span style=display:flex><span>    admin_password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(random<span style=color:#f92672>.</span>choices(CHARSET, k <span style=color:#f92672>=</span> BLOCK_LEN <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>))<span style=color:#f92672>.</span>encode() <span style=color:#f92672>+</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\x00</span><span style=color:#e6db74>&#39;</span>
-</span></span><span style=display:flex><span>    register(admin_username, admin_password)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;User </span><span style=color:#e6db74>{</span>admin_username<span style=color:#e6db74>}</span><span style=color:#e6db74> registered successfully&#39;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>5</span>):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>:
-</span></span><span style=display:flex><span>            menu()
-</span></span><span style=display:flex><span>            choice <span style=color:#f92672>=</span> int(input(<span style=color:#e6db74>&#34;&gt; &#34;</span>))
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> choice <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
-</span></span><span style=display:flex><span>                username <span style=color:#f92672>=</span> input(<span style=color:#e6db74>&#34;Enter username: &#34;</span>)
-</span></span><span style=display:flex><span>                password <span style=color:#f92672>=</span> bytes<span style=color:#f92672>.</span>fromhex(input(<span style=color:#e6db74>&#34;Enter password: &#34;</span>))
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> register(username, password):
-</span></span><span style=display:flex><span>                    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;User </span><span style=color:#e6db74>{</span>username<span style=color:#e6db74>}</span><span style=color:#e6db74> registered successfully&#39;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> choice <span style=color:#f92672>==</span> <span style=color:#ae81ff>2</span>:
-</span></span><span style=display:flex><span>                username <span style=color:#f92672>=</span> input(<span style=color:#e6db74>&#34;Enter username: &#34;</span>)
-</span></span><span style=display:flex><span>                password <span style=color:#f92672>=</span> bytes<span style=color:#f92672>.</span>fromhex(input(<span style=color:#e6db74>&#34;Enter password: &#34;</span>))
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> login(username, password):
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> username <span style=color:#f92672>==</span> admin_username:
-</span></span><span style=display:flex><span>                        print(<span style=color:#e6db74>&#34;Welcome admin, here is your flag: &#34;</span>)
-</span></span><span style=display:flex><span>                        print(open(<span style=color:#e6db74>&#34;flag.txt&#34;</span>)<span style=color:#f92672>.</span>read())
-</span></span><span style=display:flex><span>                        exit()
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>                        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Welcome user </span><span style=color:#e6db74>{</span>username<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>                    print(<span style=color:#e6db74>&#34;Invalid credential&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> choice <span style=color:#f92672>==</span> <span style=color:#ae81ff>3</span>:
-</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;Gud bye&#34;</span>)
-</span></span><span style=display:flex><span>                exit(<span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> choice <span style=color:#f92672>==</span> <span style=color:#ae81ff>1337</span>:
-</span></span><span style=display:flex><span>                victim <span style=color:#f92672>=</span> input(<span style=color:#e6db74>&#34;Give me the victim name: &#34;</span>)
-</span></span><span style=display:flex><span>                victim_token <span style=color:#f92672>=</span> breach(victim)
-</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;Shhhhh, don&#39;t tell anyone about this&#34;</span>)
-</span></span><span style=display:flex><span>                print(victim_token)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;Invalid choice&#34;</span>)
-</span></span><span style=display:flex><span>                exit(<span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ValueError</span>:
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;No No No No&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
-</span></span><span style=display:flex><span>    main()
-</span></span></code></pre></div><h2 id=challenge-analysis>Challenge Analysis<a href=#challenge-analysis class=hanchor arialabel=Anchor>#</a></h2><p>Here is a quick summarization of the problem:</p><ul><li>The server implements a simple authentication with 3 main functions:<ul><li><strong>Register</strong> a user with username $U$ and password $P$, compute and save password hash $H(T, P)$ where $T$ is a unique token for each user and $H$ is a custom function</li><li><strong>Login</strong> with username $U$ and password $P$, the server verify by compute password hash $H(T, P)$ again and check if it is stored.</li><li><strong>Retrieve token $T$</strong> of abitrary user.</li></ul></li><li>You have 5 queries, the goal is to login as <code>admin</code> and retrieve the flag</li></ul><h2 id=solution>Solution<a href=#solution class=hanchor arialabel=Anchor>#</a></h2><h3 id=brainstorm>Brainstorm<a href=#brainstorm class=hanchor arialabel=Anchor>#</a></h3><ul><li>Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x (\text{mod }p)$</li><li>The $H(T, P)$ can be written as follow:
-$$T = (T_0, T_1, &mldr;, T_{127}, 1)\text{ where }1 &lt;T_i &lt; q - 1$$$$P = (P_0, P_1, &mldr;)$$ where $P_i$ is the number representation of each 129 characters in $P$
-$$H(T, P) = y \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$</li><li>In the <code>login</code>, you can spot out that return line looks fishy:<br><code>return pwd_hash in pwd_hashes</code></li><li>If I can enforce a hash collision of hash function $H$, then I can grab the flag as follow:<ol><li>Create account with credential $U_{user}, P_{user}$, obtain $H_{user} = H(T_{user}, P_{user})$</li><li>Find a password $P&rsquo;$ such that $H(T_{admin}, P&rsquo;) = H_{user}$</li><li>Login with username <code>admin</code> and password $P&rsquo;$ to obtain the flag</li></ol></li></ul><h3 id=hash-collision>Hash Collision<a href=#hash-collision class=hanchor arialabel=Anchor>#</a></h3><ul><li>Denote $S_i$ as sum of characters at position $i$ of all blocks in $P$, i.e.
-$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &mldr;)$$$$=> H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} (\text{mod } p) = g^{x + \sum_{i=0}^{128}T_iS_i}(\text{mod } p)$$</li><li>Set $h = x + \sum_{i=0}^{128}{T_iS_i} (\text{mod } q)$</li><li>The target is to find $P&rsquo;$ whose $S&rsquo;$ satisfy the equation:
-$$x + \sum{T_{admin}S&rsquo;} = h_0 = x + \sum{T_{user}S_{user}} (\text{mod } q)$$$$ => \sum{T_{admin}S&rsquo;} = \sum{T_{user}S_{user}} (\text{mod } q)$$</li><li>I have full control over the $P_{user}$, and $T_{user}$ can be retrieved from the server => Compute the RHS of the equation is trivial</li><li>Since each element in $S&rsquo;$ is sum of characters, it is supposed to be small, while $T_{admin}$ is very huge (range $[1, q - 1]$). This implies the usage of <strong>LLL</strong> algorithm to find such $S'$</li><li>Here is the lattice:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>ASCIS CTF 2024 - LoveLinhaLot :: Zayn</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/2024/2024-10-23-ascis-ctf/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.dd0bf9c7cacb24c1b0184f52f1869b274e06689557468cc7030ccf632328eb97.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ASCIS CTF 2024 - LoveLinhaLot">
+<meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante." />
+<meta property="og:url" content="/posts/2024/2024-10-23-ascis-ctf/" />
+<meta property="og:site_name" content="Zayn" />
+
+  
+  
+    
+  
+  <meta property="og:image" content="/posts/2024/2024-10-23-ascis-ctf/hello2.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-10-23 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Zayn
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/2024/2024-10-23-ascis-ctf/">ASCIS CTF 2024 - LoveLinhaLot</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-10-23</time><span class="post-author">Zayn</span></div>
+
+  
+  
+  <img src="/posts/2024/2024-10-23-ascis-ctf/hello2.jpg"
+    class="post-cover"
+    alt="ASCIS CTF 2024 - LoveLinhaLot"
+    title="Cover Image" />
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="ascis-ctf-2024---lovelinhalot-writeup">ASCIS CTF 2024 - LoveLinhaLot Writeup<a href="#ascis-ctf-2024---lovelinhalot-writeup" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>Category: Crypto</li>
+<li>Score: 999/1000</li>
+<li>Solve: 2/63</li>
+</ul>
+<h2 id="source-code">Source code<a href="#source-code" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> string
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> isPrime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BLOCK_LEN <span style="color:#f92672">=</span> <span style="color:#ae81ff">129</span>
+</span></span><span style="display:flex;"><span>CHARSET <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_uppercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>ascii_lowercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>digits
+</span></span><span style="display:flex;"><span>users, pwd_hashes <span style="color:#f92672">=</span> {}, []
+</span></span><span style="display:flex;"><span>allowed_blocks <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>q1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">57895665874783536962369408363969823887021530656373208299565102620846005563716018275834077962292286213472570266375824572745671541793458387390711613089471407869558363212866932533545785125988453002675479793768261480181947144057144941974626043243654731721303589851520175899531854692118423229594279209070187162279</span>
+</span></span><span style="display:flex;"><span>p1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> q1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>g1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> isPrime(p1)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> isPrime(q1)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> pow(g1, q1, p1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>x1 <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span>y1 <span style="color:#f92672">=</span> pow(g1, x1, p1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">block_hash</span>(block, bases, a):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(bases, block):
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> pow(x, y, p1) <span style="color:#f92672">%</span> p1
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">secure_hash</span>(data, token, is_login <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> len(data) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;=</span> BLOCK_LEN, <span style="color:#e6db74">&#34;Invalid Length&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(data) <span style="color:#f92672">%</span> BLOCK_LEN <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x80</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> (BLOCK_LEN <span style="color:#f92672">-</span> len(data) <span style="color:#f92672">%</span> BLOCK_LEN <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    blocks <span style="color:#f92672">=</span> [data[i:i <span style="color:#f92672">+</span> BLOCK_LEN] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(data), BLOCK_LEN)]
+</span></span><span style="display:flex;"><span>    bases <span style="color:#f92672">=</span> [pow(g1, x, p1) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> token] <span style="color:#f92672">+</span> [g1]
+</span></span><span style="display:flex;"><span>    yu_1 <span style="color:#f92672">=</span> y1
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> block <span style="color:#f92672">in</span> blocks:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> all(x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> block[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;No cheese this time&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> is_login:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> block <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> allowed_blocks:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Invalid block&#34;</span>)
+</span></span><span style="display:flex;"><span>        yu_1 <span style="color:#f92672">=</span> block_hash(block, bases, yu_1)
+</span></span><span style="display:flex;"><span>        allowed_blocks<span style="color:#f92672">.</span>append(block)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> yu_1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>(username, password):
+</span></span><span style="display:flex;"><span>    token <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, q1 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(BLOCK_LEN <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> username <span style="color:#f92672">in</span> users:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Username already exists&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    pwd_hash <span style="color:#f92672">=</span> secure_hash(password, token)
+</span></span><span style="display:flex;"><span>    users[username] <span style="color:#f92672">=</span> token
+</span></span><span style="display:flex;"><span>    pwd_hashes<span style="color:#f92672">.</span>append(pwd_hash)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>(username, password):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> username <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> users:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    token <span style="color:#f92672">=</span> users[username]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        password<span style="color:#f92672">.</span>decode()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    pwd_hash <span style="color:#f92672">=</span> secure_hash(password, token, <span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> pwd_hash <span style="color:#f92672">in</span> pwd_hashes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">breach</span>(username):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> username <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> users:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users[username]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">menu</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;1. Register&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;2. Login&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;3. Exit&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    admin_username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span>    admin_password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(random<span style="color:#f92672">.</span>choices(CHARSET, k <span style="color:#f92672">=</span> BLOCK_LEN <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span>encode() <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>    register(admin_username, admin_password)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;User </span><span style="color:#e6db74">{</span>admin_username<span style="color:#e6db74">}</span><span style="color:#e6db74"> registered successfully&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            menu()
+</span></span><span style="display:flex;"><span>            choice <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#34;&gt; &#34;</span>))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>                username <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Enter username: &#34;</span>)
+</span></span><span style="display:flex;"><span>                password <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(input(<span style="color:#e6db74">&#34;Enter password: &#34;</span>))
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> register(username, password):
+</span></span><span style="display:flex;"><span>                    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;User </span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74"> registered successfully&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>                username <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Enter username: &#34;</span>)
+</span></span><span style="display:flex;"><span>                password <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(input(<span style="color:#e6db74">&#34;Enter password: &#34;</span>))
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> login(username, password):
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> username <span style="color:#f92672">==</span> admin_username:
+</span></span><span style="display:flex;"><span>                        print(<span style="color:#e6db74">&#34;Welcome admin, here is your flag: &#34;</span>)
+</span></span><span style="display:flex;"><span>                        print(open(<span style="color:#e6db74">&#34;flag.txt&#34;</span>)<span style="color:#f92672">.</span>read())
+</span></span><span style="display:flex;"><span>                        exit()
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Welcome user </span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                    print(<span style="color:#e6db74">&#34;Invalid credential&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Gud bye&#34;</span>)
+</span></span><span style="display:flex;"><span>                exit(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">1337</span>:
+</span></span><span style="display:flex;"><span>                victim <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Give me the victim name: &#34;</span>)
+</span></span><span style="display:flex;"><span>                victim_token <span style="color:#f92672">=</span> breach(victim)
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Shhhhh, don&#39;t tell anyone about this&#34;</span>)
+</span></span><span style="display:flex;"><span>                print(victim_token)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Invalid choice&#34;</span>)
+</span></span><span style="display:flex;"><span>                exit(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;No No No No&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="challenge-analysis">Challenge Analysis<a href="#challenge-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Here is a quick summarization of the problem:</p>
+<ul>
+<li>The server implements a simple authentication with 3 main functions:
+<ul>
+<li><strong>Register</strong> a user with username $U$ and password $P$, compute and save password hash $H(T, P)$ where $T$ is a unique token for each user and $H$ is a custom function</li>
+<li><strong>Login</strong> with username $U$ and password $P$, the server verify by compute password hash $H(T, P)$ again and check if it is stored.</li>
+<li><strong>Retrieve token $T$</strong> of abitrary user.</li>
+</ul>
+</li>
+<li>You have 5 queries, the goal is to login as <code>admin</code> and retrieve the flag</li>
+</ul>
+<h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="brainstorm">Brainstorm<a href="#brainstorm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x (\text{mod }p)$</li>
+<li>The $H(T, P)$ can be written as follow:
+$$T = (T_0, T_1, &hellip;, T_{127}, 1)\text{ where }1 &lt;T_i &lt; q - 1$$$$P = (P_0, P_1, &hellip;)$$ where $P_i$ is the number representation of each 129 characters in $P$
+$$H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$</li>
+<li>In the <code>login</code>, you can spot out that return line looks fishy:<br>
+<code>return pwd_hash in pwd_hashes</code></li>
+<li>If I can enforce a hash collision of hash function $H$, then I can grab the flag as follow:
+<ol>
+<li>Create account with credential $U_{user}, P_{user}$, obtain $H_{user} = H(T_{user}, P_{user})$</li>
+<li>Find a password $P&rsquo;$ such that $H(T_{admin}, P&rsquo;) = H_{user}$</li>
+<li>Login with username <code>admin</code> and password $P&rsquo;$ to obtain the flag</li>
+</ol>
+</li>
+</ul>
+<h3 id="hash-collision">Hash Collision<a href="#hash-collision" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Denote $S_i$ as sum of characters at position $i$ of all blocks in $P$, i.e.
+$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &hellip;)$$$$=&gt; H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} (\text{mod } p) = g^{x + \sum_{i=0}^{128}T_iS_i}(\text{mod } p)$$</li>
+<li>Set $h = x + \sum_{i=0}^{128}{T_iS_i} (\text{mod } q)$</li>
+<li>The target is to find $P&rsquo;$ whose $S&rsquo;$ satisfy the equation:
+$$x + \sum{T_{admin}S&rsquo;} = h_0 = x + \sum{T_{user}S_{user}} (\text{mod } q)$$$$ =&gt; \sum{T_{admin}S&rsquo;} = \sum{T_{user}S_{user}} (\text{mod } q)$$</li>
+<li>I have full control over the $P_{user}$, and $T_{user}$ can be retrieved from the server =&gt; Compute the RHS of the equation is trivial</li>
+<li>Since each element in $S&rsquo;$ is sum of characters, it is supposed to be small, while $T_{admin}$ is very huge (range $[1, q - 1]$). This implies the usage of <strong>LLL</strong> algorithm to find such $S'$</li>
+<li>Here is the lattice:
 $$
 \begin{align}
 M = \left(
 \begin{array}{ccccc}
-1 & 0 & \dots & 0 & T_0 \\
-0 & 1 & \dots & 0 & T_1 \\
-\vdots & \vdots & \vdots & \vdots & \vdots \\
-0 & 0 & \dots & 1 & T_{127} \\
-0 & 0 & \dots & 0 & q
+1        &amp; 0         &amp; \dots     &amp; 0          &amp; T_0 \\
+0        &amp; 1         &amp; \dots     &amp; 0          &amp; T_1 \\
+\vdots   &amp; \vdots    &amp; \vdots    &amp; \vdots     &amp; \vdots \\
+0        &amp; 0         &amp; \dots     &amp; 1          &amp; T_{127} \\
+0        &amp;  0        &amp; \dots     &amp; 0          &amp; q
 \end{array}
 \right)
 \end{align}
-$$</li><li>The target vector should only contains positive values so that I can craft the payload</li><li>In this challenge, I use <strong>Babai CVP</strong> algorithm and slowly increase the target vector until I get the desired output. Also, the final value must be <strong>smaller</strong> than the RHS, so that $S&rsquo;_{128}$ exists.</li></ul><h3 id=notes>Notes<a href=#notes class=hanchor arialabel=Anchor>#</a></h3><ul><li>For the payload craft, please refer the to the script below, also the <code>decode</code> method in Python <strong>does not</strong> raise an exception when the byte value is in range $[0, 127]$</li><li>The <strong>login</strong> only allows blocks that are used in <strong>register</strong> function, so you have to register another account with $P&rsquo;$ before login as <code>admin</code></li><li>This challenge is heavily inspired by <a href=https://github.com/ECSC2024/openECSC-2024/tree/main/round-2/crypto01>Invention</a> in OpenECSC Round 2. The main change here is the use of group $Z_p$ and token generation.</li><li>My script does not guarantee to find such target vector in each connection, so I have to run it 2-3 times to obtain the flag. Also the runtime is pretty long since it includes performing <strong>LLL</strong> on 128 x 128 lattice.</li><li>The first version of this challenge can be solved trivially by register a password with 129 null bytes. Therefore I delivered a revenge challenge with a check in <code>secure_hash</code> function in later phase of the CTF.</li><li>After the competition, <code>@tvdat20004</code> from team <code>UIT.Efficiency V</code> - who blooded the revenge version - told me that the CVP part can be speed up by using ConnorM&rsquo;s repo.</li></ul><h2 id=solve-script>Solve Script<a href=#solve-script class=hanchor arialabel=Anchor>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> string
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> sage.all <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pwnlib.tubes.process <span style=color:#f92672>import</span> process
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pwnlib.tubes.remote <span style=color:#f92672>import</span> remote
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> sage.modules.free_module_integer <span style=color:#f92672>import</span> IntegerLattice
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>BLOCK_LEN <span style=color:#f92672>=</span> <span style=color:#ae81ff>128</span>
-</span></span><span style=display:flex><span>q1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>57895665874783536962369408363969823887021530656373208299565102620846005563716018275834077962292286213472570266375824572745671541793458387390711613089471407869558363212866932533545785125988453002675479793768261480181947144057144941974626043243654731721303589851520175899531854692118423229594279209070187162279</span>
-</span></span><span style=display:flex><span>p1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> q1 <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>g1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>username <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;Zayn&#34;</span>
-</span></span><span style=display:flex><span>passwd <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;NCIm6RJuC5dKHohq2J6vnd8mSsesHzDC77TH5PDoGLcXUEXSJQdPGWSBGa1Y03Vzyz0GNTkm6S8iO3grixHmY07sobuhXFwmuYfFDEjzkxgbs5aajuEe7ijpkHB3JF8T</span><span style=color:#ae81ff>\x00</span><span style=color:#e6db74>&#39;</span>
-</span></span><span style=display:flex><span>M <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(BLOCK_LEN <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>)] <span style=color:#66d9ef>for</span> __ <span style=color:#f92672>in</span> range(BLOCK_LEN <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>)]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN <span style=color:#f92672>=</span> process([<span style=color:#e6db74>&#39;python3&#39;</span>, <span style=color:#e6db74>&#39;server.py&#39;</span>])
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&gt;&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;1&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;username:&#39;</span>, username)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;password:&#39;</span>, passwd<span style=color:#f92672>.</span>hex()<span style=color:#f92672>.</span>encode())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&gt;&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;1337&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;name:&#39;</span>, username)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>recvline()
-</span></span><span style=display:flex><span>user_token <span style=color:#f92672>=</span> eval(CONN<span style=color:#f92672>.</span>recvline()<span style=color:#f92672>.</span>decode()<span style=color:#f92672>.</span>strip())
-</span></span><span style=display:flex><span>print(user_token[<span style=color:#ae81ff>0</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&gt;&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;1337&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;name:&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;admin&#34;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>recvline()
-</span></span><span style=display:flex><span>admin_token <span style=color:#f92672>=</span> eval(CONN<span style=color:#f92672>.</span>recvline()<span style=color:#f92672>.</span>decode()<span style=color:#f92672>.</span>strip())
-</span></span><span style=display:flex><span>print(admin_token[<span style=color:#ae81ff>0</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>bases <span style=color:#f92672>=</span> [pow(g1, x, p1) <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> user_token]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>rhs <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> zip(user_token, passwd):
-</span></span><span style=display:flex><span>    rhs <span style=color:#f92672>+=</span> x <span style=color:#f92672>*</span> y <span style=color:#f92672>%</span> q1
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(BLOCK_LEN):
-</span></span><span style=display:flex><span>    M[i][i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>    M[i][<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> admin_token[i]
-</span></span><span style=display:flex><span>M[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>q1
-</span></span><span style=display:flex><span>M <span style=color:#f92672>=</span> Matrix(ZZ, M)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>M <span style=color:#f92672>=</span> IntegerLattice(M, lll_reduce<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)<span style=color:#f92672>.</span>reduced_basis
-</span></span><span style=display:flex><span>G <span style=color:#f92672>=</span> M<span style=color:#f92672>.</span>gram_schmidt()[<span style=color:#ae81ff>0</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Babai CVP</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> bit <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>15</span>):
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>{</span>bit <span style=color:#e6db74>= }</span><span style=color:#e6db74>&#39;</span>)
-</span></span><span style=display:flex><span>    target <span style=color:#f92672>=</span> vector(ZZ, [<span style=color:#ae81ff>2</span> <span style=color:#f92672>**</span> bit <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(BLOCK_LEN)] <span style=color:#f92672>+</span> [rhs])
-</span></span><span style=display:flex><span>    diff <span style=color:#f92672>=</span> target
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> reversed(range(G<span style=color:#f92672>.</span>nrows())):
-</span></span><span style=display:flex><span>        diff <span style=color:#f92672>-=</span>  M[i] <span style=color:#f92672>*</span> ((diff <span style=color:#f92672>*</span> G[i]) <span style=color:#f92672>/</span> (G[i] <span style=color:#f92672>*</span> G[i]))<span style=color:#f92672>.</span>round()
-</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> target <span style=color:#f92672>-</span> diff
-</span></span><span style=display:flex><span>    msg <span style=color:#f92672>=</span> [x <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> res[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]]
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> all(x <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> msg) <span style=color:#f92672>and</span> res[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> rhs:
-</span></span><span style=display:flex><span>        msg<span style=color:#f92672>.</span>append(rhs <span style=color:#f92672>-</span> res[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
-</span></span><span style=display:flex><span>        print(msg)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> len(msg) <span style=color:#f92672>!=</span> <span style=color:#ae81ff>129</span>:
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Failed&#34;</span>)
-</span></span><span style=display:flex><span>    exit()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>admin_password <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> any([x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> msg]):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(msg)):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> msg[i] <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0x7f</span>:
-</span></span><span style=display:flex><span>            admin_password <span style=color:#f92672>+=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\x7f</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>            msg[i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>0x7f</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> msg[i] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-</span></span><span style=display:flex><span>            admin_password <span style=color:#f92672>+=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\x00</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> msg[i] <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0x7f</span>:
-</span></span><span style=display:flex><span>            admin_password <span style=color:#f92672>+=</span> bytes([msg[i]])
-</span></span><span style=display:flex><span>            msg[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> len(admin_password) <span style=color:#f92672>%</span> <span style=color:#ae81ff>129</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
-</span></span><span style=display:flex><span>    admin_password <span style=color:#f92672>+=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\x00</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>*</span> (<span style=color:#ae81ff>129</span> <span style=color:#f92672>-</span> len(admin_password) <span style=color:#f92672>%</span> <span style=color:#ae81ff>129</span>)
-</span></span><span style=display:flex><span>print(len(admin_password))
-</span></span><span style=display:flex><span>blocks <span style=color:#f92672>=</span> [admin_password[i:i <span style=color:#f92672>+</span> <span style=color:#ae81ff>129</span>] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(admin_password), <span style=color:#ae81ff>129</span>)]  
-</span></span><span style=display:flex><span>blocks <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(list(set(blocks)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&gt;&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;1&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;username: &#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;Zyan&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;password: &#39;</span>, blocks<span style=color:#f92672>.</span>hex()<span style=color:#f92672>.</span>encode())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&gt;&#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;2&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;username: &#39;</span>, <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;admin&#39;</span>)
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>sendlineafter(<span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;password: &#39;</span>, admin_password<span style=color:#f92672>.</span>hex()<span style=color:#f92672>.</span>encode())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>CONN<span style=color:#f92672>.</span>interactive()
-</span></span></code></pre></div><pre tabindex=0><code>Flag: ASCIS{d1D_U_U53_lll?}
+$$</li>
+<li>The target vector should only contains positive values so that I can craft the payload</li>
+<li>In this challenge, I use <strong>Babai CVP</strong> algorithm and slowly increase the target vector until I get the desired output. Also, the final value must be <strong>smaller</strong> than the RHS, so that $S&rsquo;_{128}$ exists.</li>
+</ul>
+<h3 id="notes">Notes<a href="#notes" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>For the payload craft, please refer the to the script below, also the <code>decode</code> method in Python <strong>does not</strong> raise an exception when the byte value is in range $[0, 127]$</li>
+<li>The <strong>login</strong> only allows blocks that are used in <strong>register</strong> function, so you have to register another account with $P&rsquo;$ before login as <code>admin</code></li>
+<li>This challenge is heavily inspired by <a href="https://github.com/ECSC2024/openECSC-2024/tree/main/round-2/crypto01">Invention</a> in OpenECSC Round 2. The main change here is the use of group $Z_p$ and token generation.</li>
+<li>My script does not guarantee to find such target vector in each connection, so I have to run it 2-3 times to obtain the flag. Also the runtime is pretty long since it includes performing <strong>LLL</strong> on 128 x 128 lattice.</li>
+<li>The first version of this challenge can be solved trivially by register a password with 129 null bytes. Therefore I delivered a revenge challenge with a check in <code>secure_hash</code> function in later phase of the CTF.</li>
+<li>After the competition, <code>@tvdat20004</code> from team <code>UIT.Efficiency V</code> - who blooded the revenge version - told me that the CVP part can be speed up by using ConnorM&rsquo;s repo.</li>
+</ul>
+<h2 id="solve-script">Solve Script<a href="#solve-script" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> string
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.process <span style="color:#f92672">import</span> process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.modules.free_module_integer <span style="color:#f92672">import</span> IntegerLattice
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BLOCK_LEN <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>q1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">57895665874783536962369408363969823887021530656373208299565102620846005563716018275834077962292286213472570266375824572745671541793458387390711613089471407869558363212866932533545785125988453002675479793768261480181947144057144941974626043243654731721303589851520175899531854692118423229594279209070187162279</span>
+</span></span><span style="display:flex;"><span>p1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> q1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>g1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;Zayn&#34;</span>
+</span></span><span style="display:flex;"><span>passwd <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;NCIm6RJuC5dKHohq2J6vnd8mSsesHzDC77TH5PDoGLcXUEXSJQdPGWSBGa1Y03Vzyz0GNTkm6S8iO3grixHmY07sobuhXFwmuYfFDEjzkxgbs5aajuEe7ijpkHB3JF8T</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>M <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(BLOCK_LEN <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)] <span style="color:#66d9ef">for</span> __ <span style="color:#f92672">in</span> range(BLOCK_LEN <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> process([<span style="color:#e6db74">&#39;python3&#39;</span>, <span style="color:#e6db74">&#39;server.py&#39;</span>])
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;username:&#39;</span>, username)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;password:&#39;</span>, passwd<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1337&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;name:&#39;</span>, username)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>recvline()
+</span></span><span style="display:flex;"><span>user_token <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip())
+</span></span><span style="display:flex;"><span>print(user_token[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1337&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;name:&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;admin&#34;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>recvline()
+</span></span><span style="display:flex;"><span>admin_token <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip())
+</span></span><span style="display:flex;"><span>print(admin_token[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bases <span style="color:#f92672">=</span> [pow(g1, x, p1) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> user_token]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rhs <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(user_token, passwd):
+</span></span><span style="display:flex;"><span>    rhs <span style="color:#f92672">+=</span> x <span style="color:#f92672">*</span> y <span style="color:#f92672">%</span> q1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(BLOCK_LEN):
+</span></span><span style="display:flex;"><span>    M[i][i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    M[i][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> admin_token[i]
+</span></span><span style="display:flex;"><span>M[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>q1
+</span></span><span style="display:flex;"><span>M <span style="color:#f92672">=</span> Matrix(ZZ, M)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>M <span style="color:#f92672">=</span> IntegerLattice(M, lll_reduce<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)<span style="color:#f92672">.</span>reduced_basis
+</span></span><span style="display:flex;"><span>G <span style="color:#f92672">=</span> M<span style="color:#f92672">.</span>gram_schmidt()[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Babai CVP</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> bit <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">15</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>bit <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    target <span style="color:#f92672">=</span> vector(ZZ, [<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> bit <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(BLOCK_LEN)] <span style="color:#f92672">+</span> [rhs])
+</span></span><span style="display:flex;"><span>    diff <span style="color:#f92672">=</span> target
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> reversed(range(G<span style="color:#f92672">.</span>nrows())):
+</span></span><span style="display:flex;"><span>        diff <span style="color:#f92672">-=</span>  M[i] <span style="color:#f92672">*</span> ((diff <span style="color:#f92672">*</span> G[i]) <span style="color:#f92672">/</span> (G[i] <span style="color:#f92672">*</span> G[i]))<span style="color:#f92672">.</span>round()
+</span></span><span style="display:flex;"><span>    res <span style="color:#f92672">=</span> target <span style="color:#f92672">-</span> diff
+</span></span><span style="display:flex;"><span>    msg <span style="color:#f92672">=</span> [x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> res[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> all(x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> msg) <span style="color:#f92672">and</span> res[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> rhs:
+</span></span><span style="display:flex;"><span>        msg<span style="color:#f92672">.</span>append(rhs <span style="color:#f92672">-</span> res[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        print(msg)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(msg) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">129</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Failed&#34;</span>)
+</span></span><span style="display:flex;"><span>    exit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>admin_password <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> any([x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> msg]):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(msg)):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> msg[i] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0x7f</span>:
+</span></span><span style="display:flex;"><span>            admin_password <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x7f</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            msg[i] <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0x7f</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> msg[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            admin_password <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> msg[i] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>:
+</span></span><span style="display:flex;"><span>            admin_password <span style="color:#f92672">+=</span> bytes([msg[i]])
+</span></span><span style="display:flex;"><span>            msg[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(admin_password) <span style="color:#f92672">%</span> <span style="color:#ae81ff">129</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>    admin_password <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">129</span> <span style="color:#f92672">-</span> len(admin_password) <span style="color:#f92672">%</span> <span style="color:#ae81ff">129</span>)
+</span></span><span style="display:flex;"><span>print(len(admin_password))
+</span></span><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> [admin_password[i:i <span style="color:#f92672">+</span> <span style="color:#ae81ff">129</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(admin_password), <span style="color:#ae81ff">129</span>)]  
+</span></span><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(list(set(blocks)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;username: &#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;Zyan&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;password: &#39;</span>, blocks<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;2&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;username: &#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;admin&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;password: &#39;</span>, admin_password<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>interactive()
+</span></span></code></pre></div><pre tabindex="0"><code>Flag: ASCIS{d1D_U_U53_lll?}
 Flag: ASCIS{d1d_1_g3t_My_r3v3ng3???}
-</code></pre></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><a href=/posts/2024/hello/ class="button inline next">Hello Internet</a></div></div></article></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
-<span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div></body></html>
+</code></pre>
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="/posts/2024/hello/" class="button inline next">
+        Hello Internet
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
