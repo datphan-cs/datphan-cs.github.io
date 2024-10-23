@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zayn</title>
-    <link>/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content on Zayn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 23 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ASCIS CTF 2024 - LoveLinhaLot</title>
-      <link>/posts/2024/2024-10-23-ascis-ctf/</link>
+      <link>//localhost:1313/posts/2024/2024-10-23-ascis-ctf/</link>
       <pubDate>Wed, 23 Oct 2024 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2024/2024-10-23-ascis-ctf/</guid>
+      <guid>//localhost:1313/posts/2024/2024-10-23-ascis-ctf/</guid>
       <description>&lt;h1 id=&#34;ascis-ctf-2024---lovelinhalot-writeup&#34;&gt;ASCIS CTF 2024 - LoveLinhaLot Writeup&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Category: Crypto&lt;/li&gt;
@@ -430,24 +430,12 @@ Flag: ASCIS{d1d_1_g3t_My_r3v3ng3???}
     
     <item>
       <title>Hello Internet</title>
-      <link>/posts/2024/hello/</link>
+      <link>//localhost:1313/posts/2024/hello/</link>
       <pubDate>Wed, 23 Oct 2024 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2024/hello/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. &lt;strong&gt;Donec quis dolor nec nunc mollis interdum vel in purus&lt;/strong&gt;. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Fusce pharetra suscipit orci nec tempor. Quisque vitae sem sit amet sem mollis consequat. Sed at imperdiet lorem. Vestibulum pharetra faucibus odio, ac feugiat tellus sollicitudin at. Pellentesque varius tristique mi imperdiet dapibus. Duis orci odio, sodales lacinia venenatis sit amet, feugiat et diam.&lt;/p&gt;</description>
-      <content>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. &lt;strong&gt;Donec quis dolor nec nunc mollis interdum vel in purus&lt;/strong&gt;. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Fusce pharetra suscipit orci nec tempor. Quisque vitae sem sit amet sem mollis consequat. Sed at imperdiet lorem. Vestibulum pharetra faucibus odio, ac feugiat tellus sollicitudin at. Pellentesque varius tristique mi imperdiet dapibus. Duis orci odio, sodales lacinia venenatis sit amet, feugiat et diam.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Sed a leo id risus venenatis vulputate non quis nulla. Aenean nisl quam, lacinia pulvinar orci sit amet, eleifend eleifend dui. Nulla tempor ligula leo, eu vehicula quam condimentum a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla gravida tristique nunc sed semper. Morbi nec felis odio.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Sed efficitur, lacus ac scelerisque pellentesque, lectus risus dignissim nisl, fermentum semper lectus diam eget lacus.&lt;/li&gt;
-&lt;li&gt;Nunc ornare purus enim, id eleifend mauris vestibulum volutpat.&lt;/li&gt;
-&lt;li&gt;Aenean facilisis ut ipsum condimentum ultrices.&lt;/li&gt;
-&lt;li&gt;Fusce sed metus vulputate, lobortis purus et, finibus purus. Suspendisse quis posuere lorem. Vivamus vulputate nec risus in pulvinar.&lt;/li&gt;
-&lt;/ul&gt;
+      <guid>//localhost:1313/posts/2024/hello/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ll update my &amp;ldquo;About me&amp;rdquo; soon&amp;hellip;&lt;/p&gt;</description>
+      <content>&lt;p&gt;I&amp;rsquo;ll update my &amp;ldquo;About me&amp;rdquo; soon&amp;hellip;&lt;/p&gt;
 </content>
     </item>
     
