@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>ISITDTU Quals 2024 Writeup :: Zayn</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Writeup for crypto challenges in ISITDTU Quals 2024" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://zayn.id.vn/posts/2024/2024-10-26-isitdtu-quals/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/terminal.min.648b649ac6c3aded53751605f0969c196d37958c0eaac77e5ad416d1e1ea12a1.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://zayn.id.vn/favicon.png">
+<link rel="apple-touch-icon" href="https://zayn.id.vn/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ISITDTU Quals 2024 Writeup">
+<meta property="og:description" content="Writeup for crypto challenges in ISITDTU Quals 2024" />
+<meta property="og:url" content="https://zayn.id.vn/posts/2024/2024-10-26-isitdtu-quals/" />
+<meta property="og:site_name" content="Zayn" />
+
+  <meta property="og:image" content="https://zayn.id.vn/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-10-31 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Zayn
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://zayn.id.vn/posts/2024/2024-10-26-isitdtu-quals/">ISITDTU Quals 2024 Writeup</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-10-31</time><span class="post-author">Zayn</span></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Last weekend, I played ISITDTU Quals for an onsite final slot. The crypto challenges were pretty nice, and I managed to solve 3/5 including: <code>ShareMixer1</code>, <code>ShareMixer2</code> and <code>Sign</code>.</p>
+<h1 id="sharemixer1">ShareMixer1<a href="#sharemixer1" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code">Source Code<a href="#source-code" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random   <span style="color:#75715e"># TODO: heard that this is unsafe but nvm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> getPrime, bytes_to_long
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> bytes_to_long(open(<span style="color:#e6db74">&#34;flag.txt&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>)<span style="color:#f92672">.</span>read())
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> flag <span style="color:#f92672">&lt;</span> p
+</span></span><span style="display:flex;"><span>l <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">share_mixer</span>(xs):
+</span></span><span style="display:flex;"><span>    cs <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>append(flag)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># mixy mix</span>
+</span></span><span style="display:flex;"><span>    random<span style="color:#f92672">.</span>shuffle(xs)
+</span></span><span style="display:flex;"><span>    random<span style="color:#f92672">.</span>shuffle(cs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    shares <span style="color:#f92672">=</span> [sum((c <span style="color:#f92672">*</span> pow(x, i, p)) <span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span>                  p <span style="color:#66d9ef">for</span> i, c <span style="color:#f92672">in</span> enumerate(cs)) <span style="color:#f92672">%</span> p <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> xs]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> shares
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        queries <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Gib me the queries: &#34;</span>)
+</span></span><span style="display:flex;"><span>        xs <span style="color:#f92672">=</span> list(map(<span style="color:#66d9ef">lambda</span> x: int(x) <span style="color:#f92672">%</span> p, queries<span style="color:#f92672">.</span>split()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">in</span> xs <span style="color:#f92672">or</span> len(xs) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">256</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;GUH&#34;</span>)
+</span></span><span style="display:flex;"><span>            exit(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        shares <span style="color:#f92672">=</span> share_mixer(xs)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>shares <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><h2 id="challenge-analysis">Challenge Analysis<a href="#challenge-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The challenge can be summarized as follow: When connecting to the server, we are asked to submit maximum 256 numbers $x$ and obtain the value of $f(x) = \sum_{i = 0}^{32}{a_ix^{i}}\pmod{p}$. The flag is shuffled among $a_i$ values.</p>
+<h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="brainstorm">Brainstorm<a href="#brainstorm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>This is a <strong>Shamir Secret Sharing</strong> challenge and we can recover the original polynomial using Lagrange interpolation. However, we do not know which $x$ correspond to which $f(x)$ since the value of <code>xs</code> are shuffled. Here, I notice that the server allows us to send 256 queries, which is more than usual (32 shares is sufficient to recover coefficients of polynomial with degree 31). After a while, I realize that we can distinguish the shares by number: Send the same $x$ multiple times and observed the number of occurences in the responses. After that, some bruteforce + Lagrange interpolation is enough to recover the flag.</li>
+<li>Here is my approach:
+<ul>
+<li>Generate $xs = [1..32]$</li>
+<li>Send each $xs_i$ once for $i = 0..3$</li>
+<li>Send each $xs_i$ twice for $i = 4..7$</li>
+<li>Send each $xs_i$ 3 times for $i = 8..11$</li>
+<li>Send each $xs_i$ 4 times for $i = 12..15$</li>
+<li>Send each $xs_i$  $i - 11$ times for $i = 16..31$</li>
+</ul>
+</li>
+</ul>
+<p>=&gt; I will need a total of $(1 + 2 + 3 + 4) \times 4 + \sum_{i=16}^{31}{i - 11} = 240$ queries and bruteforce $(4!) ^ 4 = 331776$ cases to recover the flag</p>
+<h2 id="solve-script">Solve Script<a href="#solve-script" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> long_to_bytes
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> itertools <span style="color:#f92672">import</span> permutations
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>xs <span style="color:#f92672">=</span> [i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>)]
+</span></span><span style="display:flex;"><span>xs_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>        xs_str <span style="color:#f92672">+=</span> (str(xs[i]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>:
+</span></span><span style="display:flex;"><span>        xs_str <span style="color:#f92672">+=</span> (str(xs[i]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">12</span>:
+</span></span><span style="display:flex;"><span>        xs_str <span style="color:#f92672">+=</span> (str(xs[i]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>:
+</span></span><span style="display:flex;"><span>        xs_str <span style="color:#f92672">+=</span> (str(xs[i]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        xs_str <span style="color:#f92672">+=</span> (str(xs[i]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span>xs_str <span style="color:#f92672">=</span> xs_str[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]        
+</span></span><span style="display:flex;"><span>pos <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>)]
+</span></span><span style="display:flex;"><span>pos[<span style="color:#ae81ff">0</span>], pos[<span style="color:#ae81ff">1</span>], pos[<span style="color:#ae81ff">2</span>], pos[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> [], [], [], []
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;35.187.238.100&#34;</span>, <span style="color:#ae81ff">5001</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>recvlines(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>prefix <span style="color:#f92672">=</span> CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;&#34;&#39;</span>)[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> prefix <span style="color:#f92672">+</span> str(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> hashlib<span style="color:#f92672">.</span>sha256(s<span style="color:#f92672">.</span>encode())<span style="color:#f92672">.</span>hexdigest()[:<span style="color:#ae81ff">6</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;000000&#34;</span>:
+</span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;: &#39;</span>, str(i)<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> int(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; = &#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;: &#39;</span>, xs_str<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>shares <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; = &#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">=</span> GF(p)
+</span></span><span style="display:flex;"><span>R <span style="color:#f92672">=</span> K[<span style="color:#e6db74">&#39;x&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> Counter(shares)<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> v <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]:
+</span></span><span style="display:flex;"><span>        pos[v <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> k
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        pos[v <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>append(k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>shares <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>)]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">16</span>:
+</span></span><span style="display:flex;"><span>        shares[i] <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, pos[i])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>len1 <span style="color:#f92672">=</span> list(range(<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>len2 <span style="color:#f92672">=</span> list(range(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>len3 <span style="color:#f92672">=</span> list(range(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>))
+</span></span><span style="display:flex;"><span>len4 <span style="color:#f92672">=</span> list(range(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">16</span>))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> perm1 <span style="color:#f92672">in</span> permutations(pos[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>    cur_shares1 <span style="color:#f92672">=</span> shares<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> zip(len1, perm1):
+</span></span><span style="display:flex;"><span>        cur_shares1[i] <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, v)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> perm2 <span style="color:#f92672">in</span> permutations(pos[<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>        cur_shares2 <span style="color:#f92672">=</span> cur_shares1<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> zip(len2, perm2):
+</span></span><span style="display:flex;"><span>            cur_shares2[i] <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, v)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> perm3 <span style="color:#f92672">in</span> permutations(pos[<span style="color:#ae81ff">2</span>], <span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>            cur_shares3 <span style="color:#f92672">=</span> cur_shares2<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> zip(len3, perm3):
+</span></span><span style="display:flex;"><span>                cur_shares3[i] <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, v)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> perm4 <span style="color:#f92672">in</span> permutations(pos[<span style="color:#ae81ff">3</span>], <span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>                cur_shares4 <span style="color:#f92672">=</span> cur_shares3<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> zip(len4, perm4):
+</span></span><span style="display:flex;"><span>                    cur_shares4[i] <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, v)
+</span></span><span style="display:flex;"><span>                tmp <span style="color:#f92672">=</span> R<span style="color:#f92672">.</span>lagrange_polynomial(cur_shares4)<span style="color:#f92672">.</span>coefficients()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> tmp:
+</span></span><span style="display:flex;"><span>                    val <span style="color:#f92672">=</span> long_to_bytes(int(x))
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;ISITDTU&#39;</span> <span style="color:#f92672">in</span> val:
+</span></span><span style="display:flex;"><span>                        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Found flag: </span><span style="color:#e6db74">{</span>val<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>                        exit()
+</span></span></code></pre></div><h1 id="sharemixer2">ShareMixer2<a href="#sharemixer2" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code-1">Source Code<a href="#source-code-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random   <span style="color:#75715e"># TODO: heard that this is unsafe but nvm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> getPrime, bytes_to_long
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> bytes_to_long(open(<span style="color:#e6db74">&#34;flag.txt&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>)<span style="color:#f92672">.</span>read())
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> flag <span style="color:#f92672">&lt;</span> p
+</span></span><span style="display:flex;"><span>l <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">share_mixer</span>(xs):
+</span></span><span style="display:flex;"><span>    cs <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>append(flag)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># mixy mix</span>
+</span></span><span style="display:flex;"><span>    random<span style="color:#f92672">.</span>shuffle(xs)
+</span></span><span style="display:flex;"><span>    random<span style="color:#f92672">.</span>shuffle(cs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    shares <span style="color:#f92672">=</span> [sum((c <span style="color:#f92672">*</span> pow(x, i, p)) <span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span>                  p <span style="color:#66d9ef">for</span> i, c <span style="color:#f92672">in</span> enumerate(cs)) <span style="color:#f92672">%</span> p <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> xs]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> shares
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        queries <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Gib me the queries: &#34;</span>)
+</span></span><span style="display:flex;"><span>        xs <span style="color:#f92672">=</span> list(map(<span style="color:#66d9ef">lambda</span> x: int(x) <span style="color:#f92672">%</span> p, queries<span style="color:#f92672">.</span>split()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">in</span> xs <span style="color:#f92672">or</span> len(xs) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">32</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;GUH&#34;</span>)
+</span></span><span style="display:flex;"><span>            exit(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        shares <span style="color:#f92672">=</span> share_mixer(xs)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>shares <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><h2 id="solution-1">Solution<a href="#solution-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This challenge is the same as <code>ShareMixer1</code>, except that I can send maximum 32 $x$. This beats the approach of <code>ShareMixer1</code>. However, I can choose <code>xs</code> as the 16-th roots of unity modulo $p$ since their sum is 0 modulo $p$. Denote $x$ as a 16th-root of unity modulo $p$, by definition we have: $$x^{16} - 1 = 0 \pmod{p}$$ $$\Rightarrow (x - 1)\sum_{i=0}^{15}{x^i} = 0\pmod{p}$$ $$\Rightarrow \sum_{i=0}^{15}{x^i} = 0\pmod{p}$$
+The above equation holds when $x - 1 \neq 0 \pmod{p}$. After choosing such $x$ and send $x^0, x^1, &hellip;, x^{15}$ to the server, I can sum all of the shares to eliminate all but the last coefficient. Also for this approach to work, 2 more conditions need to hold:</p>
+<ol>
+<li>$p - 1 = 0 \pmod{16}$</li>
+<li>The flag is the last coefficient.</li>
+</ol>
+<p>I can overcome this by opening multiple connections, and the rest should be trivial.</p>
+<h2 id="solve-script-1">Solve Script<a href="#solve-script-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.process <span style="color:#f92672">import</span> process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> long_to_bytes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># CONN = remote(&#34;35.187.238.100&#34;, 5002)</span>
+</span></span><span style="display:flex;"><span>    CONN <span style="color:#f92672">=</span> process([<span style="color:#e6db74">&#34;python3&#34;</span>, <span style="color:#e6db74">&#34;chall.py&#34;</span>])
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> int(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34; = &#34;</span>)[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    g <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">2</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">16</span>, p)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> gk <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        g <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">2</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">16</span>, p)
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>gk <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    xs <span style="color:#f92672">=</span> [pow(gk, i, p) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>)]
+</span></span><span style="display:flex;"><span>    xs_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join(map(str, xs))
+</span></span><span style="display:flex;"><span>    CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;: &#34;</span>, xs_str<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    shares <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34; = &#34;</span>)[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    flag <span style="color:#f92672">=</span> sum(shares) <span style="color:#f92672">*</span> pow(<span style="color:#ae81ff">32</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, p) <span style="color:#f92672">%</span> p
+</span></span><span style="display:flex;"><span>    flag <span style="color:#f92672">=</span> long_to_bytes(int(flag))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;ISITDTU&#39;</span> <span style="color:#f92672">in</span> flag:
+</span></span><span style="display:flex;"><span>        print(flag)
+</span></span><span style="display:flex;"><span>        exit()
+</span></span><span style="display:flex;"><span>    CONN<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h1 id="sign">Sign<a href="#sign" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code-2">Source Code<a href="#source-code-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Signature <span style="color:#f92672">import</span> PKCS1_v1_5
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.PublicKey <span style="color:#f92672">import</span> RSA
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Hash <span style="color:#f92672">import</span> SHA256
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;ISITDTU</span><span style="color:#e6db74">{aaaaaaaaaaaaaaaaaaaaaaaaaa}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>urandom(<span style="color:#ae81ff">255</span> <span style="color:#f92672">-</span> len(flag)) <span style="color:#f92672">+</span> flag
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">genkey</span>(e<span style="color:#f92672">=</span><span style="color:#ae81ff">11</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        p <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">1024</span>)
+</span></span><span style="display:flex;"><span>        q <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">1024</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> GCD(p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, e) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> GCD(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, e) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> p<span style="color:#f92672">*</span>q
+</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> pow(e, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> RSA<span style="color:#f92672">.</span>construct((n, e, d))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gensig</span>(key: RSA<span style="color:#f92672">.</span>RsaKey) <span style="color:#f92672">-&gt;</span> bytes:
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>urandom(<span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span>    h <span style="color:#f92672">=</span> SHA256<span style="color:#f92672">.</span>new(m)
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> PKCS1_v1_5<span style="color:#f92672">.</span>new(key)<span style="color:#f92672">.</span>sign(h)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getflagsig</span>(key: RSA<span style="color:#f92672">.</span>RsaKey) <span style="color:#f92672">-&gt;</span> bytes:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> long_to_bytes(pow(bytes_to_long(flag), key<span style="color:#f92672">.</span>d, key<span style="color:#f92672">.</span>n))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> genkey()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    print(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;=================
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1. Generate random signature
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. Get flag signature
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">=================&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        choice <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#39;&gt; &#39;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            sig <span style="color:#f92672">=</span> gensig(key)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#39;sig =&#39;</span>, sig<span style="color:#f92672">.</span>hex())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>            sig <span style="color:#f92672">=</span> getflagsig(key)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#39;sig =&#39;</span>, sig<span style="color:#f92672">.</span>hex())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;huh&#39;</span>)
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><h2 id="challenge-analysis-1">Challenge Analysis<a href="#challenge-analysis-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Upon the connection, the server generate a RSA key. i  2 options:</p>
+<ol>
+<li>Get <code>PKCS#1 v1.5</code> signature of random message</li>
+<li>Get the signature of the flag: $s_{flag} = flag^{d} \pmod{n}$</li>
+</ol>
+<p>Since we already have the public exponent $e = 11$, we just need to recover modulus $n$ and recover the flag thanks to RSA signature verification $flag = s_{flag}^e \pmod{n}$.</p>
+<p>I&rsquo;ll not dive deep into the scheme (since I don&rsquo;t know much about it neither &#x1f614;). But here is a quick summary:</p>
+<ol>
+<li>The message (usually a digest) is padded to match modulus $n$ bit length</li>
+<li>The padding data is deterministic and consistent between messages.</li>
+</ol>
+<p>In this challenge, $n$ size is 2048 bits and hashing algorithm is SHA256, implying that the digest size is 256 bits. Therefore, all padded digest will have the same $2048 - 256 = 1792$ MSBs. Denote the unpadded message as $m$ and its <code>PKCS#1 v1.5</code> signature as $s_{PKCS}$, we can determine their relation as follow:
+$$ m_{padded} = known * 2^{256} + m \pmod{n}$$
+$$s_{PKCS} = m_{padded}^{d} \pmod{n}$$
+$$\Rightarrow s_{PKCS}^{e} = m_{padded} = known * 2^{256} + m \pmod{n}$$
+$$\Rightarrow s_{PKCS}^{11} = known * 2^{256} + m + k * n$$
+$$\Rightarrow s_{PKCS}^{11} - known * 2^{256} = m + k * n$$</p>
+<p>The $m$ is pretty small (256 bits), and we can gather multiple signatures. This is an instance of <strong>Approximate Common Divisor (ACD)</strong> problem and we can use <strong>LLL</strong> to recover $n$. Here I used this <a href="https://github.com/jvdsn/crypto-attacks/blob/master/attacks/acd/ol.py">repo</a> for attack&rsquo;s implementation. After some local testing, I figured out that around 20 signatures is sufficient to recover the public modulus. Ez peasy!!!</p>
+<h2 id="solve-script-2">Solve Script<a href="#solve-script-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> bytes_to_long, long_to_bytes
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> hashlib
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">symmetric_mod</span>(x, m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> int((x <span style="color:#f92672">+</span> m <span style="color:#f92672">+</span> m <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%</span> m) <span style="color:#f92672">-</span> int(m <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attack</span>(x, rho):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> len(x) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;At least two x values are required.&#34;</span>
+</span></span><span style="display:flex;"><span>    R <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> rho
+</span></span><span style="display:flex;"><span>    B <span style="color:#f92672">=</span> matrix(ZZ, len(x), len(x) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, xi <span style="color:#f92672">in</span> enumerate(x):
+</span></span><span style="display:flex;"><span>        B[i, <span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> xi
+</span></span><span style="display:flex;"><span>        B[i, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> R
+</span></span><span style="display:flex;"><span>    B <span style="color:#f92672">=</span> B<span style="color:#f92672">.</span>LLL()
+</span></span><span style="display:flex;"><span>    K <span style="color:#f92672">=</span> B<span style="color:#f92672">.</span>submatrix(row<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, col<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, nrows<span style="color:#f92672">=</span>len(x) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ncols<span style="color:#f92672">=</span>len(x))<span style="color:#f92672">.</span>right_kernel()
+</span></span><span style="display:flex;"><span>    print(B<span style="color:#f92672">.</span>submatrix(row<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, col<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, nrows<span style="color:#f92672">=</span>len(x) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ncols<span style="color:#f92672">=</span>len(x)))
+</span></span><span style="display:flex;"><span>    q <span style="color:#f92672">=</span> K<span style="color:#f92672">.</span>an_element()
+</span></span><span style="display:flex;"><span>    r0 <span style="color:#f92672">=</span> symmetric_mod(x[<span style="color:#ae81ff">0</span>], q[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> abs((x[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> r0) <span style="color:#f92672">//</span> q[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    r <span style="color:#f92672">=</span> [symmetric_mod(xi, p) <span style="color:#66d9ef">for</span> xi <span style="color:#f92672">in</span> x]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> all(<span style="color:#f92672">-</span>R <span style="color:#f92672">&lt;</span> ri <span style="color:#f92672">&lt;</span> R <span style="color:#66d9ef">for</span> ri <span style="color:#f92672">in</span> r):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> int(p), r
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>sys<span style="color:#f92672">.</span>set_int_max_str_digits(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>known <span style="color:#f92672">=</span> bytes_to_long(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00\x01\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x00</span><span style="color:#e6db74">010</span><span style="color:#ae81ff">\r\x06\t</span><span style="color:#e6db74">`</span><span style="color:#ae81ff">\x86</span><span style="color:#e6db74">H</span><span style="color:#ae81ff">\x01</span><span style="color:#e6db74">e</span><span style="color:#ae81ff">\x03\x04\x02\x01\x05\x00\x04</span><span style="color:#e6db74"> &#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span>)
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;35.187.238.100&#34;</span>, <span style="color:#ae81ff">5003</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>recvlines(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>prefix <span style="color:#f92672">=</span> CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;&#34;&#39;</span>)[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> prefix <span style="color:#f92672">+</span> str(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> hashlib<span style="color:#f92672">.</span>sha256(s<span style="color:#f92672">.</span>encode())<span style="color:#f92672">.</span>hexdigest()[:<span style="color:#ae81ff">6</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;000000&#34;</span>:
+</span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;: &#39;</span>, str(i)<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>sigs <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(SIZE):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>i <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt; &#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span><span style="display:flex;"><span>    sig <span style="color:#f92672">=</span> int(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split()[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>    sigs<span style="color:#f92672">.</span>append(sig <span style="color:#f92672">**</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> known)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&gt; &#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;2&#39;</span>)
+</span></span><span style="display:flex;"><span>enc_flag <span style="color:#f92672">=</span> int(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split()[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;sigs = </span><span style="color:#e6db74">{</span>[str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> sigs]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>N, _ <span style="color:#f92672">=</span> attack(sigs, <span style="color:#ae81ff">257</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>N <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> pow(enc_flag, <span style="color:#ae81ff">11</span>, N)
+</span></span><span style="display:flex;"><span>print(long_to_bytes(int(flag)))
+</span></span></code></pre></div>
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="https://zayn.id.vn/posts/2024/2024-10-23-ascis-ctf/" class="button inline next">
+        ASCIS CTF 2024 - LoveLinhaLot
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+  
+</div>
+
+</body>
+</html>
