@@ -216,7 +216,6 @@
 </span></span></code></pre></div><h2 id="challenge-analysis">Challenge Analysis<a href="#challenge-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>The challenge can be summarized as follow: When connecting to the server, we are asked to submit maximum 256 numbers $x$ and obtain the value of $f(x) = \sum_{i = 0}^{32}{a_ix^{i}}\pmod{p}$. The flag is shuffled among $a_i$ values.</p>
 <h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<h3 id="brainstorm">Brainstorm<a href="#brainstorm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ul>
 <li>This is a <strong>Shamir Secret Sharing</strong> challenge and we can recover the original polynomial using Lagrange interpolation. However, we do not know which $x$ correspond to which $f(x)$ since the value of <code>xs</code> are shuffled. Here, I notice that the server allows us to send 256 queries, which is more than usual (32 shares is sufficient to recover coefficients of polynomial with degree 31). After a while, I realize that we can distinguish the shares by number: Send the same $x$ multiple times and observed the number of occurences in the responses. After that, some bruteforce + Lagrange interpolation is enough to recover the flag.</li>
 <li>Here is my approach:
