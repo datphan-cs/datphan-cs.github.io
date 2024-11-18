@@ -14,6 +14,9 @@
 <link rel="canonical" href="https://zayn.id.vn/posts/2024/2024-10-26-isitdtu-quals/" />
 
 
+  
+
+
 
 
 
@@ -54,7 +57,7 @@
   <link rel="stylesheet" href="https://zayn.id.vn/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
 
   
-  <link rel="stylesheet" href="https://zayn.id.vn/css/terminal.min.648b649ac6c3aded53751605f0969c196d37958c0eaac77e5ad416d1e1ea12a1.css">
+  <link rel="stylesheet" href="https://zayn.id.vn/css/terminal.min.34d0b0e02c268ed4dc358b889f73fc70d0bd6561b4fba53a7cf62f4b3c239fca.css">
 
   
   <link rel="stylesheet" href="https://zayn.id.vn/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
@@ -170,7 +173,39 @@
   
   
 
-
+  <div class="post-container">
+  
+    <aside class="table-of-contents">
+      <h2>
+        ISITDTU Quals 2024 Writeup
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sharemixer1">ShareMixer1</a>
+      <ul>
+        <li><a href="#source-code">Source Code</a></li>
+        <li><a href="#challenge-analysis">Challenge Analysis</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#solve-script">Solve Script</a></li>
+      </ul>
+    </li>
+    <li><a href="#sharemixer2">ShareMixer2</a>
+      <ul>
+        <li><a href="#source-code-1">Source Code</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+        <li><a href="#solve-script-1">Solve Script</a></li>
+      </ul>
+    </li>
+    <li><a href="#sign">Sign</a>
+      <ul>
+        <li><a href="#source-code-2">Source Code</a></li>
+        <li><a href="#challenge-analysis-1">Challenge Analysis</a></li>
+        <li><a href="#solve-script-2">Solve Script</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </aside>
   
 
   <div class="post-content"><div>
@@ -350,10 +385,10 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span>:
 </span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>)
 </span></span></code></pre></div><h2 id="solution-1">Solution<a href="#solution-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>This challenge is the same as <code>ShareMixer1</code>, except that I can send maximum 32 $x$. This beats the approach of <code>ShareMixer1</code>. However, I can choose <code>xs</code> as the 16-th roots of unity modulo $p$ since their sum is 0 modulo $p$. Denote $x$ as a 16th-root of unity modulo $p$, by definition we have: $$x^{16} - 1 = 0 \pmod{p}$$ $$\Rightarrow (x - 1)\sum_{i=0}^{15}{x^i} = 0\pmod{p}$$ $$\Rightarrow \sum_{i=0}^{15}{x^i} = 0\pmod{p}$$
-The above equation holds when $x - 1 \neq 0 \pmod{p}$. After choosing such $x$ and send $x^0, x^1, &hellip;, x^{15}$ to the server, I can sum all of the shares to eliminate all but the last coefficient. Also for this approach to work, 2 more conditions need to hold:</p>
+<p>This challenge is the same as <code>ShareMixer1</code>, except that I can send maximum 32 $x$. This beats the approach of <code>ShareMixer1</code>. However, I can choose <code>xs</code> as the 32-th roots of unity modulo $p$ since their sum is 0 modulo $p$. Denote $x$ as a 16th-root of unity modulo $p$, by definition we have: $$x^{32} - 1 = 0 \pmod{p}$$ $$\Rightarrow (x - 1)\sum_{i=0}^{31}{x^i} = 0\pmod{p}$$ $$\Rightarrow \sum_{i=0}^{31}{x^i} = 0\pmod{p}$$
+The above equation holds when $x - 1 \neq 0 \pmod{p}$. After choosing such $x$ and send $x^0, x^1, &hellip;, x^{31}$ to the server, I can sum all of the shares to eliminate all but the last coefficient. Also for this approach to work, 2 more conditions need to hold:</p>
 <ol>
-<li>$p - 1 = 0 \pmod{16}$</li>
+<li>$p - 1 = 0 \pmod{32}$</li>
 <li>The flag is the last coefficient.</li>
 </ol>
 <p>I can overcome this by opening multiple connections, and the rest should be trivial.</p>
@@ -363,18 +398,17 @@ The above equation holds when $x - 1 \neq 0 \pmod{p}$. After choosing such $x$ a
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> long_to_bytes
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># CONN = remote(&#34;35.187.238.100&#34;, 5002)</span>
-</span></span><span style="display:flex;"><span>    CONN <span style="color:#f92672">=</span> process([<span style="color:#e6db74">&#34;python3&#34;</span>, <span style="color:#e6db74">&#34;chall.py&#34;</span>])
+</span></span><span style="display:flex;"><span>    CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;35.187.238.100&#34;</span>, <span style="color:#ae81ff">5002</span>)
 </span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> int(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34; = &#34;</span>)[<span style="color:#ae81ff">1</span>])
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
 </span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>close()
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>
 </span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
 </span></span><span style="display:flex;"><span>    g <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">2</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>    gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">16</span>, p)
+</span></span><span style="display:flex;"><span>    gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">32</span>, p)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> gk <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
 </span></span><span style="display:flex;"><span>        g <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">2</span>, p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>        gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">16</span>, p)
+</span></span><span style="display:flex;"><span>        gk <span style="color:#f92672">=</span> pow(g, (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">32</span>, p)
 </span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>gk <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
 </span></span><span style="display:flex;"><span>    xs <span style="color:#f92672">=</span> [pow(gk, i, p) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>)]
 </span></span><span style="display:flex;"><span>    xs_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join(map(str, xs))
@@ -522,7 +556,7 @@ $$\Rightarrow s_{PKCS}^{11} - known * 2^{256} = m + k * n$$</p>
 </span></span><span style="display:flex;"><span>print(long_to_bytes(int(flag)))
 </span></span></code></pre></div>
       </div></div>
-
+</div>
   
     
 <div class="pagination">
@@ -550,6 +584,19 @@ $$\Rightarrow s_{PKCS}^{11} - known * 2^{256} = m + k * n$$</p>
   
 </article>
 
+<style>
+	.table-of-contents {
+    position: fixed;
+    top: 20px;  
+    left: 0;  
+    width: 250px;  
+    margin-left: 50px;  
+    box-sizing: border-box;  
+    padding: 10px;  
+	font-size: 10px;
+  }
+</style>
+
   </div>
 
   
@@ -574,16 +621,27 @@ $$\Rightarrow s_{PKCS}^{11} - known * 2^{256} = m + k * n$$</p>
 
 
 
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 <script>
 	MathJax = {
+
+
+
+
+
+
+
+
+
+
 		tex: {
 			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+			displayMath: [['$$', '$$'], ['\\[', '\\]']],
+			
 		}
 	};
 </script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
-
 
 
 
