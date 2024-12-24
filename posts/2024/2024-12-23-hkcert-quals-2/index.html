@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>HKCERT CTF Quals 2024 Writeup (Part 2) :: Zayn</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Writeup for crypto challenges in HKCERT CTF Quals 2024 - `Pigeon Post (2)` and `mAEStro` Series" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/2024/2024-12-23-hkcert-quals-2/" />
+
+
+  
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.34d0b0e02c268ed4dc358b889f73fc70d0bd6561b4fba53a7cf62f4b3c239fca.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="HKCERT CTF Quals 2024 Writeup (Part 2)">
+<meta property="og:description" content="Writeup for crypto challenges in HKCERT CTF Quals 2024 - `Pigeon Post (2)` and `mAEStro` Series" />
+<meta property="og:url" content="http://localhost:1313/posts/2024/2024-12-23-hkcert-quals-2/" />
+<meta property="og:site_name" content="Zayn" />
+
+  
+  
+    
+  
+  <meta property="og:image" content="http://localhost:1313/posts/2024/2024-12-23-hkcert-quals-2/hkcert2024.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-12-24 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Zayn
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/2024/2024-12-23-hkcert-quals-2/">HKCERT CTF Quals 2024 Writeup (Part 2)</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-12-24</time><span class="post-author">Zayn</span></div>
+
+  
+  
+  <img src="/posts/2024/2024-12-23-hkcert-quals-2/hkcert2024.png"
+    class="post-cover"
+    alt="HKCERT CTF Quals 2024 Writeup (Part 2)"
+    title="Cover Image" />
+
+  <div class="post-container">
+  
+
+  <div class="post-content"><div>
+        <p>This post will cover my solutions for <code>Pigeon Post (2)</code> and 2 <code>mAEStro</code> challenges.</p>
+<h1 id="pigeon-post-2">Pigeon Post (2)<a href="#pigeon-post-2" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="challenge-analysis">Challenge Analysis<a href="#challenge-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>This challenge implements a Diffie-Hellman key exchange on 2 entities: <strong>Alice</strong> and <strong>Byron</strong>. After the process, both entities agree on a session ke $SK$, which is used as key for AES-CTR for communication phase.
+<img alt="Key Exchange Phase" src="/posts/2024/2024-12-23-hkcert-quals-2/key-exchange-phase.png"></li>
+<li>In communication phase, all messages are encrypted with AES-CTR. Alice and Byron, whose secret is $s_A$ and $s_B$ respectively, have specific responses to different type of messages:
+<ul>
+<li>
+<p>Alice:</p>
+<table>
+<thead>
+<tr>
+<th>Received</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>what is the flag? I have the secret </code> + $s_B$</td>
+<td><code>the flag is </code> + $s_A$</td>
+</tr>
+<tr>
+<td><code>nice flag!</code></td>
+<td><code>:)</code></td>
+</tr>
+<tr>
+<td><code>too bad...</code></td>
+<td><code>what happened?</code></td>
+</tr>
+<tr>
+<td>Other</td>
+<td><code>???</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Byron:</p>
+<table>
+<thead>
+<tr>
+<th>Received</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>done!</code></td>
+<td><code>what is the flag? I have the secret</code> + $s_B$</td>
+</tr>
+<tr>
+<td>Prefix: <code>the flag is </code>, suffix: <code>hkcert24{.*}</code></td>
+<td><code>nice flag!</code></td>
+</tr>
+<tr>
+<td>Prefix: <code>the flag is </code>, other suffix</td>
+<td><code>too bad...</code></td>
+</tr>
+<tr>
+<td>Other</td>
+<td><code>???</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>In <code>Pigeon Post (1)</code>, we can intercept the key exchange phase and thus can perform a man-in-the-middle attack. This challenge patches that vulnerability by only allowing us to intercept the communication phase.</li>
+<li>Since Alice sends Byron a <code>done!</code> message after <code>Finish Handshake</code> step, we can recover the encrypted flag as follow:</li>
+</ul>
+<ol>
+<li>Send <code>done!</code> to Byron -&gt; Obtain <code>what is the flag? I have the secret</code> + $s_B$</li>
+<li>Send <code>what is the flag? I have the secret</code> + $s_B$ to Alice -&gt; Obtain <code>the flag is </code> + $s_A$</li>
+</ol>
+<ul>
+<li>Notice that when we send a message that starts with <code>the flag is </code>, Byron only check whether the suffix matches <code>hkcert24{.*}</code>, this means that both <code>hkcert24{MystizIsMyIdol}</code> and <code>hkcert24{}</code> satisfy the regex. But how can we use this information up to our advantage?</li>
+<li>Denote $KS$ as the keystream generated by AES-CTR, we have:
+$$ct = Enc(SK, pt) = KS \oplus pt$$$$Dec(SK, ct \oplus b) = KS \oplus ct \oplus b = pt \oplus b$$</li>
+<li>Utilizing this property, we can recover the flag byte-by-byte by just enumerating all 256 possibilities and checking when Byron replies with <code>nice flag!</code>.</li>
+<li>A problem here is that both <code>nice flag!</code> and <code>too bad...</code> messages have same length, therefore we cannot distinguish those based on their length. To overcome this, we just need to forward the resonpse to Alice and observe the Alice&rsquo;s response length, since the responses correspond with these 2 messages have different lengths.</li>
+</ul>
+<h2 id="solve-script">Solve Script<a href="#solve-script" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;c24b-pigeon-2.hkcert24.pwnable.hk&#34;</span>, <span style="color:#ae81ff">1337</span>, ssl<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>alice_pubkey <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;public_key&#34;</span>]
+</span></span><span style="display:flex;"><span>byron_pubkey <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;public_key&#34;</span>]
+</span></span><span style="display:flex;"><span>done_ct <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;ciphertext&#34;</span>]
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🕊️ &#39;</span><span style="color:#f92672">.</span>encode(), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;byron &#39;</span> <span style="color:#f92672">+</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#39;type&#39;</span>: <span style="color:#e6db74">&#39;communicate&#39;</span>, <span style="color:#e6db74">&#39;ciphertext&#39;</span>: done_ct}, separators<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;,&#39;</span>, <span style="color:#e6db74">&#39;:&#39;</span>))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>secret_ct <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;ciphertext&#34;</span>]
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🕊️ &#39;</span><span style="color:#f92672">.</span>encode(), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;alice &#39;</span> <span style="color:#f92672">+</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#39;type&#39;</span>: <span style="color:#e6db74">&#39;communicate&#39;</span>, <span style="color:#e6db74">&#39;ciphertext&#39;</span>: secret_ct}, separators<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;,&#39;</span>, <span style="color:#e6db74">&#39;:&#39;</span>))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>flag_ct <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;ciphertext&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>known_len <span style="color:#f92672">=</span> len(<span style="color:#e6db74">&#39;the flag is hkcert24{&#39;</span>)
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;hkcert24{&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> known_len <span style="color:#f92672">&lt;</span> len(flag_ct):
+</span></span><span style="display:flex;"><span>    prefix <span style="color:#f92672">=</span> flag_ct[:known_len]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">256</span>):
+</span></span><span style="display:flex;"><span>        flag_ct_test <span style="color:#f92672">=</span> prefix <span style="color:#f92672">+</span> bytes([b])
+</span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🕊️ &#39;</span><span style="color:#f92672">.</span>encode(), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;byron &#39;</span> <span style="color:#f92672">+</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#39;type&#39;</span>: <span style="color:#e6db74">&#39;communicate&#39;</span>, <span style="color:#e6db74">&#39;ciphertext&#39;</span>: flag_ct_test<span style="color:#f92672">.</span>hex()}, separators<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;,&#39;</span>, <span style="color:#e6db74">&#39;:&#39;</span>))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        res_ct <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;ciphertext&#34;</span>]
+</span></span><span style="display:flex;"><span>        CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🕊️ &#39;</span><span style="color:#f92672">.</span>encode(), <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;alice &#39;</span> <span style="color:#f92672">+</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#39;type&#39;</span>: <span style="color:#e6db74">&#39;communicate&#39;</span>, <span style="color:#e6db74">&#39;ciphertext&#39;</span>: res_ct}, separators<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;,&#39;</span>, <span style="color:#e6db74">&#39;:&#39;</span>))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        res_ct <span style="color:#f92672">=</span> eval(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())[<span style="color:#e6db74">&#34;ciphertext&#34;</span>]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(res_ct) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">44</span>:
+</span></span><span style="display:flex;"><span>            flag <span style="color:#f92672">+=</span> bytes([flag_ct[known_len] <span style="color:#f92672">^</span> b <span style="color:#f92672">^</span> ord(<span style="color:#e6db74">&#39;}&#39;</span>)])
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>flag <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    known_len <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><code>FLAG: hkcert24{0n3_c4n_4ls0_l34k_1nf0rm4710n_fr0m_th3_l3n9th}</code></p>
+<h1 id="maestro-1-sample">mAEStro (1): Sample<a href="#maestro-1-sample" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code">Source Code<a href="#source-code" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h2 id="challenge-analysis-1">Challenge Analysis<a href="#challenge-analysis-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>In this challenge, we are given a normal Advanced Encryption Standard (AES) implementation, except a &ldquo;backdoor&rdquo; that randomizes which operations are used for this AES based on $seed$.</li>
+<li>When connected, the server generates a secret key $K$ and secret message $m_0$ and gives us $c_0 = AES(K, m_0)$. With access to the encryption oracle, the target is to recover $m_0$.</li>
+</ul>
+<h2 id="solution-1">Solution<a href="#solution-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>
+<p>The AES includes 4 main operaions:</p>
+<ul>
+<li><code>AddRoundKey</code>: XOR-ing the state with round key,</li>
+<li><code>ShiftRows</code>: Shift state&rsquo;s rows,</li>
+<li><code>MixColumns</code>: Mix bytes for each state&rsquo;s column,</li>
+<li><code>SubBytes</code>: Substitute one byte by another byte in SBox.
+
+  <figure class="center" >
+    <img src="./aes-structure.png"   class="center"/>
+    
+      <figcaption class="center" >AES Structure (Source: CryptoHack)</figcaption>
+    
+  </figure>
+
+</li>
+</ul>
+</li>
+<li>
+<p>However, only <code>AddRoundKey</code> involves the usage of secret key. Therefore, AES with no <code>AddRoundKey</code> operations can be easily reversed by applying the inverse functions of <code>ShiftRows</code>, <code>SubBytes</code> and <code>MixColumns</code>.</p>
+</li>
+<li>
+<p>This approach is feasible since <code>random.choices</code> is <strong>chosen with replacement</strong>, therefore we can bruteforce the $seed$ until <code>self.operations</code> does not contain <code>AddRoundKey</code>. Then we implement the <code>decrypt_block</code> method for the custom AES to recover $m_0$ and get the flag.</p>
+</li>
+</ul>
+<h2 id="solve-script-1">Solve Script<a href="#solve-script-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> aes <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decrypt_block</span>(self, ciphertext):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> len(ciphertext) <span style="color:#f92672">==</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        cipher_state <span style="color:#f92672">=</span> bytes2matrix(ciphertext)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> operation, <span style="color:#f92672">*</span>args <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>operations[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> operation <span style="color:#f92672">==</span> shift_rows:
+</span></span><span style="display:flex;"><span>                inv_shift_rows(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> operation <span style="color:#f92672">==</span> sub_bytes:
+</span></span><span style="display:flex;"><span>                inv_sub_bytes(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> operation <span style="color:#f92672">==</span> mix_columns:
+</span></span><span style="display:flex;"><span>                inv_mix_columns(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Error&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> matrix2bytes(cipher_state)
+</span></span><span style="display:flex;"><span>AES<span style="color:#f92672">.</span>decrypt_block <span style="color:#f92672">=</span> decrypt_block
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;c06a-maestro-1.hkcert24.pwnable.hk&#34;</span>, <span style="color:#ae81ff">1337</span>, ssl<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>seed <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xdc\xc2\xad\xd2</span><span style="color:#e6db74">Q</span><span style="color:#ae81ff">\x11</span><span style="color:#e6db74">7</span><span style="color:#ae81ff">\x83</span><span style="color:#e6db74">I</span><span style="color:#ae81ff">\x98\xa1\xe3\xdd</span><span style="color:#e6db74">[</span><span style="color:#ae81ff">\x92\x8e</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🌱 &#39;</span><span style="color:#f92672">.</span>encode(), seed<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>cipher <span style="color:#f92672">=</span> AES(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span>, seed)
+</span></span><span style="display:flex;"><span>c0 <span style="color:#f92672">=</span> CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>m0 <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span>decrypt_block(bytes<span style="color:#f92672">.</span>fromhex(c0))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>m0 <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;💬 &#39;</span><span style="color:#f92672">.</span>encode(), m0<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>interactive()
+</span></span></code></pre></div><p><code>FLAG: hkcert24{a3s_i5_k3yl3ss_1f_th3re_ar3_n0_4ddr0undk3y_op3r4t10ns}</code></p>
+<h1 id="maestro-2-shuffle">mAEStro (2): Shuffle<a href="#maestro-2-shuffle" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="challenge-analysis-2">Challenge Analysis<a href="#challenge-analysis-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>This challenge setup is the same as <code>mAEStro (1): Sample</code>, but <code>random.shuffle</code> is used instead of <code>random.choices</code> in the backdoor function. The target remains the same, recover $m_0$ given its ciphertext $c_0$ and access to encryption oracle.</li>
+</ul>
+<h2 id="solution-2">Solution<a href="#solution-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>The use of <code>random.shuffle</code> beats the approach of <code>mAEStro (1): Sample</code> because now all the operations of original AES must be taken.</li>
+<li>Among 4 aforementioned AES&rsquo;s operations, only <code>SubBytes</code> provides non-linearity to the ciphertext. The other operations can be expressed as <strong>affine transformation</strong>, i.e. applying operation $\mathcal{O}$ on the state $S$ will yield the result $S&rsquo; = P_\mathcal{O} * S + K_\mathcal{O}$ where $P_\mathcal{O} \in Z_2^{128 \times 128}$; $S, S&rsquo;, K_\mathcal{O} \in Z_2^{128 \times 1}$; $P_\mathcal{O}$ is a constant with respective to $\mathcal{O}$; $K_\mathcal{O}$ is constant and dependent on key in case of <code>AddRoundKey</code>.</li>
+<li>Since we are working in $GF(2)$, suppose we have $S_0&rsquo;, S_1&rsquo;, S_2&rsquo;$ as the results of applying affine transformation $\mathcal{O}$ on $S_0, S_1, S_2$:
+$$S_0&rsquo; = P_\mathcal{O} * S_0 + K_\mathcal{O}$$
+$$S_1&rsquo; = P_\mathcal{O} * S_1 + K_\mathcal{O}$$
+$$S_2&rsquo; = P_\mathcal{O} * S_2 + K_\mathcal{O}$$
+$$\Rightarrow S&rsquo; = S_0&rsquo; + S_1&rsquo; + S_2&rsquo; = P_\mathcal{O} * (S_0 + S_1 + S_2) + K_\mathcal{O} = P_\mathcal{O} * S + K_\mathcal{O}$$</li>
+<li>Therefore, we can obtain the result $S&rsquo;$ of applying operation $\mathcal{O}$ on $S = \sum_{i = 0}^{2 * n - 1}{S_i}$ by evaluating $P_\mathcal{O}* \sum_{i = 0}^{2 * n - 1}{S_i} + K_\mathcal{O}$</li>
+<li>Back to the challenge, let&rsquo;s consider a simplified version of AES with only 3 <code>AddRoundKey</code> operations. If we can remove all the <code>SubBytes</code> between <code>AddRoundKey</code> operations, e.g. like the figure below, then we can express $S_6$ as the result of an affine transformation on $S_1$. Since we are given $S$ and $S&rsquo;$ (plaintext and ciphertext, respectively) and both the paths from $S$ to $S_1$ and $S&rsquo;$ to $S_6$ do not involve key, calculating $S_1$ and $S_6$ is feasible.
+
+  <figure class="center" >
+    <img src="./simplified-aes.png"   class="center"/>
+    
+      <figcaption class="center" >Simplified AES</figcaption>
+    
+  </figure>
+
+</li>
+<li>If we can gather multiple plaintext-ciphertext ($m_i - c_i$) pairs, we can express the original ciphertext $c_0$ in terms of $c_i$ by solving a system of linear equations over $GF(2)$, then applying the homomorphic properties above to extract the output of AES <strong>before</strong> the first <code>AddRoundKey</code> operation. And then easy flag!!!</li>
+</ul>
+<h2 id="solve-script-2">Solve Script<a href="#solve-script-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.util.fiddling <span style="color:#f92672">import</span> xor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> aes <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bytes2bits</span>(b):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> list(map(int, <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(format(x, <span style="color:#e6db74">&#39;08b&#39;</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> b)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encrypt_block</span>(self, plaintext, start <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>, end <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Encrypts a single block of 16 byte long plaintext.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> len(plaintext) <span style="color:#f92672">==</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        plain_state <span style="color:#f92672">=</span> bytes2matrix(plaintext)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> start:
+</span></span><span style="display:flex;"><span>            start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> end:
+</span></span><span style="display:flex;"><span>            end <span style="color:#f92672">=</span> len(self<span style="color:#f92672">.</span>operations)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> operation, <span style="color:#f92672">*</span>args <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>operations[start:end]:
+</span></span><span style="display:flex;"><span>            operation(plain_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> matrix2bytes(plain_state)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decrypt_block</span>(self, ciphertext, start <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>, end <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> len(ciphertext) <span style="color:#f92672">==</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>        cipher_state <span style="color:#f92672">=</span> bytes2matrix(ciphertext)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> end:
+</span></span><span style="display:flex;"><span>            end <span style="color:#f92672">=</span> len(self<span style="color:#f92672">.</span>operations)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> operation, <span style="color:#f92672">*</span>args <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>operations[end:start:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> operation <span style="color:#f92672">==</span> add_round_key:
+</span></span><span style="display:flex;"><span>                add_round_key(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> operation <span style="color:#f92672">==</span> shift_rows:
+</span></span><span style="display:flex;"><span>                inv_shift_rows(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> operation <span style="color:#f92672">==</span> sub_bytes:
+</span></span><span style="display:flex;"><span>                inv_sub_bytes(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> operation <span style="color:#f92672">==</span> mix_columns:
+</span></span><span style="display:flex;"><span>                inv_mix_columns(cipher_state, <span style="color:#f92672">*</span>args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;Error&#34;</span>, operation)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> matrix2bytes(cipher_state)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AES<span style="color:#f92672">.</span>encrypt_block <span style="color:#f92672">=</span> encrypt_block
+</span></span><span style="display:flex;"><span>AES<span style="color:#f92672">.</span>decrypt_block <span style="color:#f92672">=</span> decrypt_block    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">=</span> GF(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span>seed <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;{</span><span style="color:#ae81ff">\xe3\x95\xc5</span><span style="color:#e6db74">C`</span><span style="color:#ae81ff">\xc3</span><span style="color:#e6db74">R</span><span style="color:#ae81ff">\xda\xa0\xb0\x85</span><span style="color:#e6db74">+</span><span style="color:#ae81ff">\xa2\xda</span><span style="color:#e6db74">3</span><span style="color:#ae81ff">\xec\xac</span><span style="color:#e6db74">$</span><span style="color:#ae81ff">\x11\xba</span><span style="color:#e6db74">oBM</span><span style="color:#ae81ff">\xa2</span><span style="color:#e6db74">GV</span><span style="color:#ae81ff">\x12</span><span style="color:#e6db74">t</span><span style="color:#ae81ff">\xcb\xbf</span><span style="color:#e6db74">/</span><span style="color:#ae81ff">\x8f\x93</span><span style="color:#e6db74">N</span><span style="color:#ae81ff">\x84\xcd</span><span style="color:#e6db74">iF</span><span style="color:#ae81ff">\xa3</span><span style="color:#e6db74">w</span><span style="color:#ae81ff">\x03\xec</span><span style="color:#e6db74">S</span><span style="color:#ae81ff">\xad\xd7\xa7\x9e\xc1\x82\x83</span><span style="color:#e6db74">Ab#</span><span style="color:#ae81ff">\xb8</span><span style="color:#e6db74">a}</span><span style="color:#ae81ff">\xca</span><span style="color:#e6db74">f</span><span style="color:#ae81ff">\xa9</span><span style="color:#e6db74">C</span><span style="color:#ae81ff">\x82</span><span style="color:#e6db74">7E&#39;</span>
+</span></span><span style="display:flex;"><span>cipher <span style="color:#f92672">=</span> AES(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">32</span>, seed <span style="color:#f92672">=</span> seed)
+</span></span><span style="display:flex;"><span>pts <span style="color:#f92672">=</span> [os<span style="color:#f92672">.</span>urandom(<span style="color:#ae81ff">16</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(SIZE)]
+</span></span><span style="display:flex;"><span>cts <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>cts_start <span style="color:#f92672">=</span> [cipher<span style="color:#f92672">.</span>encrypt_block(pt, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>) <span style="color:#66d9ef">for</span> pt <span style="color:#f92672">in</span> pts]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONN <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;c06b-maestro-2.hkcert24.pwnable.hk&#34;</span>, <span style="color:#ae81ff">1337</span>, ssl<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;🌱 &#39;</span><span style="color:#f92672">.</span>encode(), seed<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>c0 <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> pt <span style="color:#f92672">in</span> pts:
+</span></span><span style="display:flex;"><span>    CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;💬 &#39;</span><span style="color:#f92672">.</span>encode(), pt<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>    cts<span style="color:#f92672">.</span>append(bytes<span style="color:#f92672">.</span>fromhex(CONN<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cts_end <span style="color:#f92672">=</span> [cipher<span style="color:#f92672">.</span>decrypt_block(ct, start <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">17</span>) <span style="color:#66d9ef">for</span> ct <span style="color:#f92672">in</span> cts]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>lhs <span style="color:#f92672">=</span> Matrix(K, [bytes2bits(cts_end[i]) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(SIZE)])<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span>lhs <span style="color:#f92672">=</span> lhs<span style="color:#f92672">.</span>stack(vector(K, [<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(SIZE)]))
+</span></span><span style="display:flex;"><span>rhs <span style="color:#f92672">=</span> Matrix(K, bytes2bits(cipher<span style="color:#f92672">.</span>decrypt_block(c0, start <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">17</span>)) <span style="color:#f92672">+</span> [<span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>res <span style="color:#f92672">=</span> lhs<span style="color:#f92672">.</span>solve_right(rhs)<span style="color:#f92672">.</span>list()
+</span></span><span style="display:flex;"><span>start <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(res)):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> res[i]:
+</span></span><span style="display:flex;"><span>        start <span style="color:#f92672">=</span> xor(start, cts_start[i])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m0 <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span>decrypt_block(start, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>m0 <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>sendlineafter(<span style="color:#e6db74">&#39;💬 &#39;</span><span style="color:#f92672">.</span>encode(), m0<span style="color:#f92672">.</span>hex()<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>CONN<span style="color:#f92672">.</span>interactive()
+</span></span></code></pre></div><h2 id="flag-hkcert24m1xc0lumn5_1s_th3_0nly_0p3r4t10n_th4t_m4ps_0n3_by73s_t0_mult16l3_by73s"><code>FLAG: hkcert24{m1xc0lumn5_1s_th3_0nly_0p3r4t10n_th4t_m4ps_0n3_by73s_t0_mult16l3_by73s}</code><a href="#flag-hkcert24m1xc0lumn5_1s_th3_0nly_0p3r4t10n_th4t_m4ps_0n3_by73s_t0_mult16l3_by73s" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>References</p>
+
+      </div></div>
+</div>
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="http://localhost:1313/posts/2024/2024-12-24-hkcert-quals-1/" class="button inline prev">
+        HKCERT CTF Quals 2024 Writeup (Part 1)
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="http://localhost:1313/posts/2024/2024-10-26-isitdtu-quals/" class="button inline next">
+        ISITDTU Quals 2024 Writeup
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+<style>
+	.table-of-contents {
+    position: fixed;
+    top: 20px;  
+    left: 0;  
+    width: 250px;  
+    margin-left: 50px;  
+    box-sizing: border-box;  
+    padding: 10px;  
+	font-size: 10px;
+  }
+</style>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script>
+	MathJax = {
+
+		tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']],
+			
+		}
+	};
+</script>
+
+
+
+  
+</div>
+
+</body>
+</html>
