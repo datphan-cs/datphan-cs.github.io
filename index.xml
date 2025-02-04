@@ -90,7 +90,7 @@ modjail Source Code #!/usr/bin/python3 from Crypto.Util.number import getPrime, 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(eval(m))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;solution-1&#34;&gt;Solution&lt;/h2&gt;
 &lt;p&gt;This challenge adds 1 more constraint: &lt;code&gt;long_to_bytes(n)&lt;/code&gt; can only contains AT MOST 2 non-lowercase bytes. I continued to use the format &lt;code&gt;&#39;flag#&#39; + [S]&lt;/code&gt;, so now our &lt;code&gt;S&lt;/code&gt; can contains lowercase characters &lt;code&gt;a-z&lt;/code&gt; and 1 arbitrary bytes.
-Let $M = \overline{c_{l-1}c_{l-2}&amp;hellip;c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
+Let $M = \overline{c_{l-1}c_{l-2}..c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
 $$BTL(M) = \sum_{i = 0}^{l}256^ic_i$$
 Applying the equation to my chosen format with $m_0 = BTL(flag\#)$ and $l$ is the length of &lt;code&gt;S&lt;/code&gt;, I have:
 $$n = 256^{l}m_0 + \sum_{i = 0}^{l - 1}256^ic_i$$

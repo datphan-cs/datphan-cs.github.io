@@ -252,7 +252,7 @@
 </span></span><span style="display:flex;"><span>print(eval(m))
 </span></span></code></pre></div><h2 id="solution-1">Solution<a href="#solution-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>This challenge adds 1 more constraint: <code>long_to_bytes(n)</code> can only contains AT MOST 2 non-lowercase bytes. I continued to use the format <code>'flag#' + [S]</code>, so now our <code>S</code> can contains lowercase characters <code>a-z</code> and 1 arbitrary bytes.
-Let $M = \overline{c_{l-1}c_{l-2}&hellip;c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
+Let $M = \overline{c_{l-1}c_{l-2}..c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
 $$BTL(M) = \sum_{i = 0}^{l}256^ic_i$$
 Applying the equation to my chosen format with $m_0 = BTL(flag\#)$ and $l$ is the length of <code>S</code>, I have:
 $$n = 256^{l}m_0 + \sum_{i = 0}^{l - 1}256^ic_i$$
