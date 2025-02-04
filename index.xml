@@ -13,9 +13,9 @@
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>https://zayn.id.vn/posts/2025/2025-01-24-imaginary-ctf-round-53/</guid>
-      <description>I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the modjail series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.
+      <description>I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the modjail series drew most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.
 modjail Source Code #!/usr/bin/python3 from Crypto.Util.number import getPrime, long_to_bytes from secret import flag from secrets import randbelow p = getPrime(1024) r = randbelow(p) print(f&amp;#39;{r} mod {p}&amp;#39;) n = int(input()) if n%p != r: print(&amp;#39;no&amp;#39;) exit() print(eval(long_to_bytes(n))) Challenge Analysis In this series, we have to find a number $n$ with 2 constraints: Satisfy an equation modulo a given prime $p$, print(eval(long_to_bytes(n))) will somehow give us the flag.</description>
-      <content>&lt;p&gt;I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the &lt;code&gt;modjail&lt;/code&gt; series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.&lt;/p&gt;
+      <content>&lt;p&gt;I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the &lt;code&gt;modjail&lt;/code&gt; series drew most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.&lt;/p&gt;
 &lt;h1 id=&#34;modjail&#34;&gt;modjail&lt;/h1&gt;
 &lt;h2 id=&#34;source-code&#34;&gt;Source Code&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/python3&lt;/span&gt;
@@ -92,13 +92,13 @@ modjail Source Code #!/usr/bin/python3 from Crypto.Util.number import getPrime, 
 &lt;p&gt;This challenge adds 1 more constraint: &lt;code&gt;long_to_bytes(n)&lt;/code&gt; can only contains AT MOST 2 non-lowercase bytes. I continued to use the format &lt;code&gt;&#39;flag#&#39; + [S]&lt;/code&gt;, so now our &lt;code&gt;S&lt;/code&gt; can contains lowercase characters &lt;code&gt;a-z&lt;/code&gt; and 1 arbitrary bytes.
 Let $M = \overline{c_{l-1}c_{l-2}&amp;hellip;c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
 $$BTL(M) = \sum_{i = 0}^{l}256^ic_i$$
-Applying the equation to my chosen format with $m_0 = BTL(&amp;lsquo;flag\#&amp;rsquo;)$ and $l$ is the length of &lt;code&gt;S&lt;/code&gt;, I have:
+Applying the equation to my chosen format with $m_0 = BTL(flag\#)$ and $l$ is the length of &lt;code&gt;S&lt;/code&gt;, I have:
 $$n = 256^{l}m_0 + \sum_{i = 0}^{l - 1}256^ic_i$$
 $$\Rightarrow 256^lm_0 + \sum_{i = 0}^{l - 1}256^ic_i \equiv r \pmod{p}$$
 $$\Rightarrow \sum_{i = 0}^{l - 1}256^cc_i \equiv r - 256^lm_0 \pmod{p}$$
 Now the problem is to solve the modular equation to find &lt;strong&gt;small roots&lt;/strong&gt; $c_i \in [97, 122]$. This can be done via the LLL algorithm. As LLL will try to find roots as close to 0 as possible, I balance out the expected vectors to make the range of its entries has 0 as center. This can be done by defining $d_i = c_i - 109 \Rightarrow d_i \in [-12, 13]$, then I have:
 $$\sum_{i = 0}^{l - 1}256^i(d_i + 109) \equiv r - 256^lm_0\pmod{p}$$
-$$\Rightarrow 256^0d_0 + 256^1d_1 + &amp;hellip; 256^{l - 1}d_{l - 1} \equiv r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i\pmod{p}$$
+$$\Rightarrow 256^0d_0 + 256^1d_1 + &amp;hellip; + 256^{l - 1}d_{l - 1} \equiv r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i\pmod{p}$$
 Let $s =r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i$, then define matrix $M$ as follow:
 $$
 \begin{align}
@@ -161,12 +161,12 @@ which has a short vector $v = [d_0, d_1, &amp;hellip;, d_{l - 1}, -1, 0]$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Basically, &lt;code&gt;wild&lt;/code&gt; convert each digit in $n$ to its ASCII value (&lt;code&gt;0&lt;/code&gt; -&amp;gt; 48, &lt;code&gt;1&lt;/code&gt; -&amp;gt; 49, &amp;hellip;) then treat those ASCII values as a bytestream and convert it to corresponding integer.&lt;/p&gt;
 &lt;p&gt;$n$ now has to satisfy the following property: $n \equiv wild(n) \pmod{p}$&lt;/p&gt;
 &lt;h3 id=&#34;finding-n-such-that-n-equiv-wildn-pmodp&#34;&gt;Finding $n$ such that $n \equiv wild(n) \pmod{p}$&lt;/h3&gt;
-&lt;p&gt;Let $n = \overline{a_{l - 1}a_{l - 2}&amp;hellip;a_1a_0}$ where $a_i \in [0, 9]$, so I have:
+&lt;p&gt;Let $n = \overline{a_{l - 1}a_{l - 2}..a_1a_0}$ where $a_i \in [0, 9]$, so I have:
 $$n = \sum_{i = 0}^{l - 1}10^ia_i$$
 $$wild(n) = \sum_{i = 0}^{l - 1}256^i(a_i + 48) = \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i$$
 $$ \Rightarrow \sum_{i = 0}^{l - 1}10^ia_i \equiv \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
 $$\Rightarrow \sum_{i = 0}^{l - 1}(10^i - 256^i)a_i \equiv 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
-But Zayn, where does 48 come from? Indeed, the action of converting a digit $a_i$ into its ASCII value can be expressed as $f(a_i) = a_i + 48$. So &lt;code&gt;0&lt;/code&gt; is 48, &lt;code&gt;1&lt;/code&gt; is 49, &lt;code&gt;2&lt;/code&gt; is 50 and so on. Now I can transform the above property to:&lt;/p&gt;
+But Zayn, where does 48 come from? Indeed, the action of converting a digit $a_i$ into its ASCII value can be expressed as $f(a_i) = a_i + 48$. So &lt;code&gt;0&lt;/code&gt; is 48, &lt;code&gt;1&lt;/code&gt; is 49, &lt;code&gt;2&lt;/code&gt; is 50 and so on.&lt;/p&gt;
 &lt;p&gt;The problem of finding $n$ is now similar too &lt;code&gt;modjail2&lt;/code&gt; and I can solve it with LLL. Since $a_i \in [0, 9]$ is not centered around 0, I define $b_i = a_i - 5 \Rightarrow b_i \in [-5, 4]$. Let $s = 48\sum_{i = 0}^{l - 1}256^i - 5\sum_{i = 0}^{l - 1}(10^i - 256^i)$, the following matrix $M$ will have $v = [b_1, &amp;hellip;, b_{l - 1}, -1, 0]$ as a short vector:
 $$
 \begin{align}
@@ -189,8 +189,8 @@ $$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1645879958137 18622250011390837678245756542061662962959919673933 				flag#\xb5\x8b\xc6J0\x83\x10j\xb5y\xd5-\xdf\x9a&amp;#39;\xdf\t\xe2\xd4\xf2M
 1645879958137 54797919548001321220014467010580692716798274751696				flag#\xceLcjHB\xc5~m\xa9q\x19\x8aEb\x99\xbeV\xec\xcc\xd0
 1645879958137 04370019905726608943316373149044356675622662460717				flag#\xab\xcbR0L\xf1`\xc1iRX5\xaa\xab\xc7&amp;gt;\x8d\xda&amp;amp;U-
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After found the desired MS digits $n_{M}$, the goal is to find the rest digits $n_{L}$ of $n$ such that $n \equiv wild(n) \pmod{p}$. I solved this by first rewrite $n = 10^k \times n_{M} + n_{L}$ where $k$ is the number of digit in $n_{L}$ $\Rightarrow wild(n) = wild(10^k \times n_{M} * + n_{L})$&lt;/p&gt;
-&lt;p&gt;First, let&amp;rsquo;s try to express $n$, $n_M$ and $n_L$:
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After found the desired MS digits $n_{M}$, the goal is to find the rest digits $n_{L}$ of $n$ such that $n \equiv wild(n) \pmod{p}$. I solved this by first rewrite $n = 10^k \times n_{M} + n_{L} \Rightarrow wild(n) = wild(10^k \times n_{M} * + n_{L})$&lt;/p&gt;
+&lt;p&gt;First, let&amp;rsquo;s try to express $n$, $n_M$ and $n_L$ in digits:
 
   &lt;figure class=&#34;center&#34; &gt;
     &lt;img src=&#34;./numerical-form.png&#34;   class=&#34;center&#34;/&gt;

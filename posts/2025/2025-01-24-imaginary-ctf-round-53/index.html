@@ -6,7 +6,7 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
+<meta name="description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series drew most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -79,7 +79,7 @@
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="ImaginaryCTF Round 53 - modjail series">
-<meta property="og:description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
+<meta property="og:description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series drew most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
 <meta property="og:url" content="https://zayn.id.vn/posts/2025/2025-01-24-imaginary-ctf-round-53/" />
 <meta property="og:site_name" content="Zayn" />
 
@@ -177,7 +177,7 @@
   
 
   <div class="post-content"><div>
-        <p>I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the <code>modjail</code> series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.</p>
+        <p>I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the <code>modjail</code> series drew most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.</p>
 <h1 id="modjail">modjail<a href="#modjail" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <h2 id="source-code">Source Code<a href="#source-code" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python3</span>
@@ -254,13 +254,13 @@
 <p>This challenge adds 1 more constraint: <code>long_to_bytes(n)</code> can only contains AT MOST 2 non-lowercase bytes. I continued to use the format <code>'flag#' + [S]</code>, so now our <code>S</code> can contains lowercase characters <code>a-z</code> and 1 arbitrary bytes.
 Let $M = \overline{c_{l-1}c_{l-2}&hellip;c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
 $$BTL(M) = \sum_{i = 0}^{l}256^ic_i$$
-Applying the equation to my chosen format with $m_0 = BTL(&lsquo;flag\#&rsquo;)$ and $l$ is the length of <code>S</code>, I have:
+Applying the equation to my chosen format with $m_0 = BTL(flag\#)$ and $l$ is the length of <code>S</code>, I have:
 $$n = 256^{l}m_0 + \sum_{i = 0}^{l - 1}256^ic_i$$
 $$\Rightarrow 256^lm_0 + \sum_{i = 0}^{l - 1}256^ic_i \equiv r \pmod{p}$$
 $$\Rightarrow \sum_{i = 0}^{l - 1}256^cc_i \equiv r - 256^lm_0 \pmod{p}$$
 Now the problem is to solve the modular equation to find <strong>small roots</strong> $c_i \in [97, 122]$. This can be done via the LLL algorithm. As LLL will try to find roots as close to 0 as possible, I balance out the expected vectors to make the range of its entries has 0 as center. This can be done by defining $d_i = c_i - 109 \Rightarrow d_i \in [-12, 13]$, then I have:
 $$\sum_{i = 0}^{l - 1}256^i(d_i + 109) \equiv r - 256^lm_0\pmod{p}$$
-$$\Rightarrow 256^0d_0 + 256^1d_1 + &hellip; 256^{l - 1}d_{l - 1} \equiv r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i\pmod{p}$$
+$$\Rightarrow 256^0d_0 + 256^1d_1 + &hellip; + 256^{l - 1}d_{l - 1} \equiv r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i\pmod{p}$$
 Let $s =r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i$, then define matrix $M$ as follow:
 $$
 \begin{align}
@@ -323,12 +323,12 @@ which has a short vector $v = [d_0, d_1, &hellip;, d_{l - 1}, -1, 0]$.</p>
 </span></span></code></pre></div><p>Basically, <code>wild</code> convert each digit in $n$ to its ASCII value (<code>0</code> -&gt; 48, <code>1</code> -&gt; 49, &hellip;) then treat those ASCII values as a bytestream and convert it to corresponding integer.</p>
 <p>$n$ now has to satisfy the following property: $n \equiv wild(n) \pmod{p}$</p>
 <h3 id="finding-n-such-that-n-equiv-wildn-pmodp">Finding $n$ such that $n \equiv wild(n) \pmod{p}$<a href="#finding-n-such-that-n-equiv-wildn-pmodp" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Let $n = \overline{a_{l - 1}a_{l - 2}&hellip;a_1a_0}$ where $a_i \in [0, 9]$, so I have:
+<p>Let $n = \overline{a_{l - 1}a_{l - 2}..a_1a_0}$ where $a_i \in [0, 9]$, so I have:
 $$n = \sum_{i = 0}^{l - 1}10^ia_i$$
 $$wild(n) = \sum_{i = 0}^{l - 1}256^i(a_i + 48) = \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i$$
 $$ \Rightarrow \sum_{i = 0}^{l - 1}10^ia_i \equiv \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
 $$\Rightarrow \sum_{i = 0}^{l - 1}(10^i - 256^i)a_i \equiv 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
-But Zayn, where does 48 come from? Indeed, the action of converting a digit $a_i$ into its ASCII value can be expressed as $f(a_i) = a_i + 48$. So <code>0</code> is 48, <code>1</code> is 49, <code>2</code> is 50 and so on. Now I can transform the above property to:</p>
+But Zayn, where does 48 come from? Indeed, the action of converting a digit $a_i$ into its ASCII value can be expressed as $f(a_i) = a_i + 48$. So <code>0</code> is 48, <code>1</code> is 49, <code>2</code> is 50 and so on.</p>
 <p>The problem of finding $n$ is now similar too <code>modjail2</code> and I can solve it with LLL. Since $a_i \in [0, 9]$ is not centered around 0, I define $b_i = a_i - 5 \Rightarrow b_i \in [-5, 4]$. Let $s = 48\sum_{i = 0}^{l - 1}256^i - 5\sum_{i = 0}^{l - 1}(10^i - 256^i)$, the following matrix $M$ will have $v = [b_1, &hellip;, b_{l - 1}, -1, 0]$ as a short vector:
 $$
 \begin{align}
@@ -351,8 +351,8 @@ $$</p>
 <pre tabindex="0"><code>1645879958137 18622250011390837678245756542061662962959919673933 				flag#\xb5\x8b\xc6J0\x83\x10j\xb5y\xd5-\xdf\x9a&#39;\xdf\t\xe2\xd4\xf2M
 1645879958137 54797919548001321220014467010580692716798274751696				flag#\xceLcjHB\xc5~m\xa9q\x19\x8aEb\x99\xbeV\xec\xcc\xd0
 1645879958137 04370019905726608943316373149044356675622662460717				flag#\xab\xcbR0L\xf1`\xc1iRX5\xaa\xab\xc7&gt;\x8d\xda&amp;U-
-</code></pre><p>After found the desired MS digits $n_{M}$, the goal is to find the rest digits $n_{L}$ of $n$ such that $n \equiv wild(n) \pmod{p}$. I solved this by first rewrite $n = 10^k \times n_{M} + n_{L}$ where $k$ is the number of digit in $n_{L}$ $\Rightarrow wild(n) = wild(10^k \times n_{M} * + n_{L})$</p>
-<p>First, let&rsquo;s try to express $n$, $n_M$ and $n_L$:
+</code></pre><p>After found the desired MS digits $n_{M}$, the goal is to find the rest digits $n_{L}$ of $n$ such that $n \equiv wild(n) \pmod{p}$. I solved this by first rewrite $n = 10^k \times n_{M} + n_{L} \Rightarrow wild(n) = wild(10^k \times n_{M} * + n_{L})$</p>
+<p>First, let&rsquo;s try to express $n$, $n_M$ and $n_L$ in digits:
 
   <figure class="center" >
     <img src="./numerical-form.png"   class="center"/>
