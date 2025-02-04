@@ -356,7 +356,7 @@ $$s_{i} = seed + i * c \pmod{M}$$</li>
 $$p_0 = s_{i} * M^3 + s_{i + 1} * M^2 + s_{i + 2} * M + s_{i + 3}$$
 $$\displaylines{\Rightarrow p_0 = s_{i} * M^3 + (s_{i} + c - k_0 * M) * M^2 + \\ (s_{i} + 2 * c - k_0 * M - k_1 * M) * M + \\ (s_{i} + 3 * c - k_0 * M - k_1 * M - k_2 * M)}$$</li>
 <li>The $k_i$ are introduced to present the modular operation with $M$. Notice that while $M$ is <strong>256 bits</strong>, $c$ is only <strong>253 bits</strong>. This implies that the addition with $c$ in the LCG will rarely exceed $M$ $\Rightarrow k_i \in [0, 1]$.</li>
-<li>Since $s_i$ is only 256 bits and $n$ is 2048 bits, we should think of <strong>Coppersmith&rsquo;s Method</strong>. In fact, the polynomial $f = p_0 * p_1 * p_2 * p_3 - n$ should have a <strong>small root</strong> $s_i$ (256 bits). I tried Sage&rsquo;s <code>small_roots</code> with $\beta = 0.245$ but it did not give any solutions.</li>
+<li>Since $s_i$ is only 256 bits and $n$ is 4096 bits, we should think of <strong>Coppersmith&rsquo;s Method</strong>. In fact, the polynomial $f = p_0 * p_1 * p_2 * p_3 - n$ should have a <strong>small root</strong> $s_i$ (256 bits). I tried Sage&rsquo;s <code>small_roots</code> with $\beta = 0.245$ but it did not give any solutions.</li>
 <li>After the CTF ends, I spent some time reading about Coppersmith&rsquo;s method and stumbled upon the Theorem 1.5<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</li>
 </ul>
 <blockquote>
@@ -632,7 +632,7 @@ $$\Rightarrow n = s_{i + 3} * s_{i + 3 + k_0} * s_{i + 3 + k_1} * s_{i + 3 + k_2
   <div class="footer__inner">
     
       <div class="copyright">
-        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
     
       <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>

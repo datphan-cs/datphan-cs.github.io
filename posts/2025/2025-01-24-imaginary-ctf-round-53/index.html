@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>ImaginaryCTF Round 53 - modjail series :: Zayn</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://zayn.id.vn/posts/2025/2025-01-24-imaginary-ctf-round-53/" />
+
+
+  
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/terminal.min.34d0b0e02c268ed4dc358b889f73fc70d0bd6561b4fba53a7cf62f4b3c239fca.css">
+
+  
+  <link rel="stylesheet" href="https://zayn.id.vn/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://zayn.id.vn/favicon.png">
+<link rel="apple-touch-icon" href="https://zayn.id.vn/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ImaginaryCTF Round 53 - modjail series">
+<meta property="og:description" content="I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the `modjail` series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series." />
+<meta property="og:url" content="https://zayn.id.vn/posts/2025/2025-01-24-imaginary-ctf-round-53/" />
+<meta property="og:site_name" content="Zayn" />
+
+  <meta property="og:image" content="https://zayn.id.vn/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-02-03 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Zayn
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://zayn.id.vn/posts/2025/2025-01-24-imaginary-ctf-round-53/">ImaginaryCTF Round 53 - modjail series</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-02-03</time><span class="post-author">Zayn</span></div>
+
+  
+  
+
+  <div class="post-container">
+  
+
+  <div class="post-content"><div>
+        <p>I found some interesting crypto challenges in Imaginary CTF round 53. Among those, the <code>modjail</code> series draw most of my attention due to its cleverly hidden problem. This post will cover my writeup of the series.</p>
+<h1 id="modjail">modjail<a href="#modjail" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code">Source Code<a href="#source-code" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> getPrime, long_to_bytes
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> secret <span style="color:#f92672">import</span> flag
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> secrets <span style="color:#f92672">import</span> randbelow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">1024</span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> randbelow(p)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>r<span style="color:#e6db74">}</span><span style="color:#e6db74"> mod </span><span style="color:#e6db74">{</span>p<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> int(input())
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> n<span style="color:#f92672">%</span>p <span style="color:#f92672">!=</span> r:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;no&#39;</span>)
+</span></span><span style="display:flex;"><span>    exit()
+</span></span><span style="display:flex;"><span>print(eval(long_to_bytes(n)))
+</span></span></code></pre></div><h2 id="challenge-analysis">Challenge Analysis<a href="#challenge-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>In this series, we have to find a number $n$ with 2 constraints:
+<ul>
+<li>Satisfy an equation modulo a given prime $p$,</li>
+<li><code>print(eval(long_to_bytes(n)))</code> will somehow give us the flag.</li>
+</ul>
+</li>
+<li>The objective is to recover the flag.</li>
+</ul>
+<h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>As this a jail challenge, there are multiple solutions to the second condition. But since the output of <code>eval</code> is printed out and the first condition might make the <code>long_to_bytes(n)</code> contains lots of gibberish bytes. Therefore to make it align to Python syntax, I chose the payload of this form: <code>flag# [S]</code>. With <code>#</code>, most of the gibberish values will not be considered when passing to <code>eval</code>.</p>
+<p>A constraint for <code>S</code> is that it must not contain <code>\x00</code> and <code>\x0a</code> bytes. The first one is prohibited by default when using with <code>eval</code>, and the second one will break out of the comment, thus causing syntax error.</p>
+<p>In the challenge, we are given 2 values $p$ and $r$ upon the connection. The first condition can now be expressed as: Find a number $n$ such that $n \equiv r \pmod{p}$.</p>
+<p>Let&rsquo;s denote $n_0 = $ <code>long_to_bytes(b'flag# ' + S)</code>, then we can find the nearest multiples of $p$ and add $r$ to find such $n$. I only need the final payload has <code>flag#</code> as the prefix, so I can craft <code>S</code> very big compared to $r$ and $p$ (e.g. 2048 bits), therefore only LSBs are affected when $n$ in constructed in such way.</p>
+<h2 id="solve-script">Solve Script<a href="#solve-script" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> long_to_bytes, bytes_to_long
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>original <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag#&#39;</span>
+</span></span><span style="display:flex;"><span>io <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;155.248.210.243&#34;</span>, <span style="color:#ae81ff">42114</span>)
+</span></span><span style="display:flex;"><span>r, p <span style="color:#f92672">=</span> map(int, io<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; mod &#39;</span>))
+</span></span><span style="display:flex;"><span>original <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag#&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x01</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1024</span>):
+</span></span><span style="display:flex;"><span>    tmp <span style="color:#f92672">=</span> original <span style="color:#f92672">+</span> i <span style="color:#f92672">*</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x01</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>    k <span style="color:#f92672">=</span> bytes_to_long(tmp) <span style="color:#f92672">//</span> p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    payload <span style="color:#f92672">=</span> long_to_bytes(k <span style="color:#f92672">*</span> p <span style="color:#f92672">+</span> r)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> payload <span style="color:#f92672">and</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> payload:
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>sendline(str(bytes_to_long(payload))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>interactive()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><h1 id="modjail2">modjail2<a href="#modjail2" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="source-code-1">Source Code<a href="#source-code-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> getPrime, long_to_bytes
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> secret <span style="color:#f92672">import</span> flag
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> secrets <span style="color:#f92672">import</span> randbelow
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> getPrime(<span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> randbelow(p)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>r<span style="color:#e6db74">}</span><span style="color:#e6db74"> mod </span><span style="color:#e6db74">{</span>p<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> int(input())
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> n<span style="color:#f92672">%</span>p <span style="color:#f92672">!=</span> r:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;no&#39;</span>)
+</span></span><span style="display:flex;"><span>    exit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m <span style="color:#f92672">=</span> long_to_bytes(n)<span style="color:#f92672">.</span>decode()
+</span></span><span style="display:flex;"><span>strikes <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 3 and you&#39;re out!</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> m:
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (ord(<span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#f92672">&lt;=</span> ord(c) <span style="color:#f92672">&lt;=</span> ord(<span style="color:#e6db74">&#39;z&#39;</span>)):
+</span></span><span style="display:flex;"><span>        strikes <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;strike </span><span style="color:#e6db74">{</span>strikes<span style="color:#e6db74">}{</span><span style="color:#e6db74">&#34;!&#34;</span><span style="color:#f92672">*</span>strikes<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> strikes <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>: exit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(eval(m))
+</span></span></code></pre></div><h2 id="solution-1">Solution<a href="#solution-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This challenge adds 1 more constraint: <code>long_to_bytes(n)</code> can only contains AT MOST 2 non-lowercase bytes. I continued to use the format <code>'flag#' + [S]</code>, so now our <code>S</code> can contains lowercase characters <code>a-z</code> and 1 arbitrary bytes.
+Let $M = \overline{c_{l-1}c_{l-2}&hellip;c_1c_0} $ be a bytestream of length $l$ then its numerical expression $BTL(M)$:
+$$BTL(M) = \sum_{i = 0}^{l}256^ic_i$$
+Applying the equation to my chosen format with $m_0 = BTL(&lsquo;flag\#&rsquo;)$ and $l$ is the length of <code>S</code>, I have:
+$$n = 256^{l}m_0 + \sum_{i = 0}^{l - 1}256^ic_i$$
+$$\Rightarrow 256^lm_0 + \sum_{i = 0}^{l - 1}256^ic_i \equiv r \pmod{p}$$
+$$\Rightarrow \sum_{i = 0}^{l - 1}256^cc_i \equiv r - 256^lm_0 \pmod{p}$$
+Now the problem is to solve the modular equation to find <strong>small roots</strong> $c_i \in [97, 122]$. This can be done via the LLL algorithm. As LLL will try to find roots as close to 0 as possible, I balance out the expected vectors to make the range of its entries has 0 as center. This can be done by defining $d_i = c_i - 109 \Rightarrow d_i \in [-12, 13]$, then I have:
+$$\sum_{i = 0}^{l - 1}256^i(d_i + 109) \equiv r - 256^lm_0\pmod{p}$$
+$$\Rightarrow 256^0d_0 + 256^1d_1 + &hellip; 256^{l - 1}d_{l - 1} \equiv r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i\pmod{p}$$
+Let $s =r - 256^lm_0 -109\sum_{i = 0}^{l - 1}256^i$, then define matrix $M$ as follow:
+$$
+\begin{align}
+M = \left(
+\begin{array}{cccccc}
+1        &amp; 0         &amp; \dots     &amp; 0          &amp; 0          &amp; 256^0 \\
+0        &amp; 1         &amp; \dots     &amp; 0          &amp; 0          &amp; 256^1 \\
+\vdots   &amp; \vdots    &amp; \vdots    &amp; \vdots     &amp; 0          &amp; \vdots \\
+0        &amp; 0         &amp; \dots     &amp; 1          &amp; 0          &amp; 256^{l - 1} \\
+0        &amp; 0         &amp; \dots     &amp; 0          &amp; 1          &amp; s \\
+0        &amp;  0        &amp; \dots     &amp; 0          &amp; 0          &amp; p
+\end{array}
+\right)
+\end{align}
+$$
+which has a short vector $v = [d_0, d_1, &hellip;, d_{l - 1}, -1, 0]$.</p>
+<p>Then I only need to bruteforce $l$, find the row in which last 2 entries are $[-1, 0]$ and the rest in range $[-12, 13]$, calculate $n$ and send it to the server.</p>
+<h2 id="solve-script-1">Solve Script<a href="#solve-script-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> bytes_to_long
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>W <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>original <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag#&#39;</span>
+</span></span><span style="display:flex;"><span>io <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#34;155.248.210.243&#34;</span>, <span style="color:#ae81ff">42115</span>)
+</span></span><span style="display:flex;"><span>r, p <span style="color:#f92672">=</span> map(int, io<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; mod &#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> length <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">200</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>length <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    m0 <span style="color:#f92672">=</span> bytes_to_long(original <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> length)
+</span></span><span style="display:flex;"><span>    col <span style="color:#f92672">=</span> [pow(<span style="color:#ae81ff">256</span>, i, p) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(length)]
+</span></span><span style="display:flex;"><span>    target <span style="color:#f92672">=</span> (r <span style="color:#f92672">-</span> m0 <span style="color:#f92672">-</span> <span style="color:#ae81ff">109</span> <span style="color:#f92672">*</span> sum(col)) <span style="color:#f92672">%</span> p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    col <span style="color:#f92672">=</span> col <span style="color:#f92672">+</span> [target]
+</span></span><span style="display:flex;"><span>    L <span style="color:#f92672">=</span> block_matrix(ZZ, [
+</span></span><span style="display:flex;"><span>        [identity_matrix(len(col)), column_matrix(col)],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0</span>, p] 
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    L <span style="color:#f92672">=</span> L<span style="color:#f92672">.</span>LLL()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> L:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> row[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> row[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> any(<span style="color:#f92672">not</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">&lt;=</span> x <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> row[:<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        row <span style="color:#f92672">=</span> [<span style="color:#ae81ff">109</span> <span style="color:#f92672">+</span> x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> row[:<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]][::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        password <span style="color:#f92672">=</span> original <span style="color:#f92672">+</span> bytes(row)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> bytes_to_long(password) <span style="color:#f92672">%</span> p <span style="color:#f92672">!=</span> r:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Found </span><span style="color:#e6db74">{</span>password <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>sendline(str(bytes_to_long(password))<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>interactive()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><h1 id="modjail3">modjail3<a href="#modjail3" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="solution-2">Solution<a href="#solution-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>There is a new function called <code>wild</code>, which is defined as follow:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wild</span>(n):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> bytes_to_long(repr(n)<span style="color:#f92672">.</span>encode()) <span style="color:#f92672">==</span> p
+</span></span></code></pre></div><p>Basically, <code>wild</code> convert each digit in $n$ to its ASCII value (<code>0</code> -&gt; 48, <code>1</code> -&gt; 49, &hellip;) then treat those ASCII values as a bytestream and convert it to corresponding integer.</p>
+<p>$n$ now has to satisfy the following property: $n \equiv wild(n) \pmod{p}$</p>
+<h3 id="finding-n-such-that-n-equiv-wildn-pmodp">Finding $n$ such that $n \equiv wild(n) \pmod{p}$<a href="#finding-n-such-that-n-equiv-wildn-pmodp" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Let $n = \overline{a_{l - 1}a_{l - 2}&hellip;a_1a_0}$ where $a_i \in [0, 9]$, so I have:
+$$n = \sum_{i = 0}^{l - 1}10^ia_i$$
+$$wild(n) = \sum_{i = 0}^{l - 1}256^i(a_i + 48) = \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i$$
+$$ \Rightarrow \sum_{i = 0}^{l - 1}10^ia_i \equiv \sum_{i = 0}^{l - 1}256^ia_i + 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
+$$\Rightarrow \sum_{i = 0}^{l - 1}(10^i - 256^i)a_i \equiv 48\sum_{i = 0}^{l - 1}256^i \pmod{p}$$
+But Zayn, where does 48 come from? Indeed, the action of converting a digit $a_i$ into its ASCII value can be expressed as $f(a_i) = a_i + 48$. So <code>0</code> is 48, <code>1</code> is 49, <code>2</code> is 50 and so on. Now I can transform the above property to:</p>
+<p>The problem of finding $n$ is now similar too <code>modjail2</code> and I can solve it with LLL. Since $a_i \in [0, 9]$ is not centered around 0, I define $b_i = a_i - 5 \Rightarrow b_i \in [-5, 4]$. Let $s = 48\sum_{i = 0}^{l - 1}256^i - 5\sum_{i = 0}^{l - 1}(10^i - 256^i)$, the following matrix $M$ will have $v = [b_1, &hellip;, b_{l - 1}, -1, 0]$ as a short vector:
+$$
+\begin{align}
+M = \left(
+\begin{array}{cccccc}
+1        &amp; 0         &amp; \dots     &amp; 0          &amp; 0          &amp; 10^1 - 256^1 \\
+0        &amp; 1         &amp; \dots     &amp; 0          &amp; 0          &amp; 10^2 - 256^2 \\
+\vdots   &amp; \vdots    &amp; \vdots    &amp; \vdots     &amp; 0          &amp; \vdots \\
+0        &amp; 0         &amp; \dots     &amp; 1          &amp; 0          &amp; 10^{l - 1} - 256^{l - 1} \\
+0        &amp; 0         &amp; \dots     &amp; 0          &amp; 1          &amp; s \\
+0        &amp;  0        &amp; \dots     &amp; 0          &amp; 0          &amp; p
+\end{array}
+\right)
+\end{align}
+$$</p>
+<h3 id="craft-n-to-have-flag-as-prefix">Craft $n$ to have <code>flag#</code> as prefix<a href="#craft-n-to-have-flag-as-prefix" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>The problem with $n$ found by the previous section is that its bytes form only contains gibberish values instead of following my selected format (<code>'flag#' + [S]</code>). At first, I hope that by increasing $l$, there is a chance that $n$ obtained from above approach has <code>flag#</code> when converting to bytes. However this did not work out according to my experiment for $l \le 180$</p>
+<p>Therefore, I tried new idea: If I fix some most-significant (MS) digits of $n$, then can I find the rest digits to make it satisfy the condition? Turn out the answer is yes.</p>
+<p>For a random number $n$, the 5 MS bytes of $LTB(n)$ (the $LTB$ function converts a number into bytes) is determined by $n / 256^{l - 5}$ where $l$ is the length of $LTB(n)$. Or in short, <strong>MS digits determine MS bytes</strong>. For example, the following numbers all have <code>1645879958137</code> as the prefix and their $LTB$s have <code>flag#</code> as a prefix too.</p>
+<pre tabindex="0"><code>1645879958137 18622250011390837678245756542061662962959919673933 				flag#\xb5\x8b\xc6J0\x83\x10j\xb5y\xd5-\xdf\x9a&#39;\xdf\t\xe2\xd4\xf2M
+1645879958137 54797919548001321220014467010580692716798274751696				flag#\xceLcjHB\xc5~m\xa9q\x19\x8aEb\x99\xbeV\xec\xcc\xd0
+1645879958137 04370019905726608943316373149044356675622662460717				flag#\xab\xcbR0L\xf1`\xc1iRX5\xaa\xab\xc7&gt;\x8d\xda&amp;U-
+</code></pre><p>After found the desired MS digits $n_{M}$, the goal is to find the rest digits $n_{L}$ of $n$ such that $n \equiv wild(n) \pmod{p}$. I solved this by first rewrite $n = 10^k \times n_{M} + n_{L}$ where $k$ is the number of digit in $n_{L}$ $\Rightarrow wild(n) = wild(10^k \times n_{M} * + n_{L})$</p>
+<p>First, let&rsquo;s try to express $n$, $n_M$ and $n_L$:
+
+  <figure class="center" >
+    <img src="./numerical-form.png"   class="center"/>
+    
+  </figure>
+
+</p>
+<p>Therefore, the outputs of applying $wild$ function on those numbers are:</p>
+<p>$$ \displaylines{wild(10^k \times n_M) = \sum_{i = k}^{l_1 + k - 1}256^ia_i + 48\sum_{i = 0}^{l_1 + k - 1}256^i
+\\
+wild(n_L) =  \sum_{i = 0}^{l_2 - 1}256^ib_i + 48\sum_{i = 0}^{l_2 - 1}256^i
+\\
+wild(n) = \sum_{i = k}^{l_1 + k - 1}256^ia_i + \sum_{i = 0}^{l_2 - 1}256^ib_i + 48\sum_{i = 0}^{l_1 + k - 1}256^i
+\\
+\Rightarrow wild(n) = wild(10^k \times n_M) + wild(n_L) - 48\sum_{i = 0}^{l_2 - 1}256^i
+}
+$$</p>
+<p>Combine this with the original condition, i.e. $n \equiv wild(n) \pmod{p}$:
+$$\displaylines{
+n \equiv wild(10^k \times n_M) + wild(n_L) - 48\sum_{i = 0}^{l_2 - 1}256^i \pmod{p}
+\\
+\Rightarrow 10^k \times n_M + n_L \equiv  wild(10^k \times n_M) + wild(n_L) - 48\sum_{i = 0}^{l_2 - 1}256^ i\pmod{p}
+\\
+\Rightarrow n_L \equiv wild(n_L) + m_0 \pmod{p}
+} $$
+with $m_0 = wild(10^k \times n_M) - 48\sum_{i = 0}^{l_2 - 1}256^i - 10^k \times n_M$</p>
+<p>Now this problem is find $n_L$ such that $n_L \equiv wild(n_L) + m_0 \pmod{p}$ where $m_0$ is a known value. Therefore I can adjust the lattice in previous section to solve for $n_L$, send it to the server and grab the flag.</p>
+<h2 id="solve-script-2">Solve Script<a href="#solve-script-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sage.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> long_to_bytes, bytes_to_long
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pwnlib.tubes.remote <span style="color:#f92672">import</span> remote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> subprocess <span style="color:#f92672">import</span> run <span style="color:#66d9ef">as</span> subprocess_run
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> re <span style="color:#f92672">import</span> findall
+</span></span><span style="display:flex;"><span>flatter_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/usr/local/bin/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">flatter</span>(M):
+</span></span><span style="display:flex;"><span>    z <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[[&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">[&#34;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join(map(str, row)) <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> M) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;]]&#34;</span>
+</span></span><span style="display:flex;"><span>    ret <span style="color:#f92672">=</span> subprocess_run(flatter_path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;flatter&#34;</span>, input<span style="color:#f92672">=</span>z<span style="color:#f92672">.</span>encode(), cwd<span style="color:#f92672">=</span>flatter_path, capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ret<span style="color:#f92672">.</span>returncode <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        print(ret<span style="color:#f92672">.</span>stderr)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;LLL failed with return code </span><span style="color:#e6db74">{</span>ret<span style="color:#f92672">.</span>returncode<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    ret <span style="color:#f92672">=</span> ret<span style="color:#f92672">.</span>stdout
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> matrix(ZZ, M<span style="color:#f92672">.</span>nrows(), M<span style="color:#f92672">.</span>ncols(), map(int, findall(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;-?</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">d+&#34;</span>, ret)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wild</span>(num):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bytes_to_long(repr(num)<span style="color:#f92672">.</span>encode()) <span style="color:#f92672">%</span> p 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>io <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#39;155.248.210.243&#39;</span>, <span style="color:#ae81ff">42111</span>)
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> int(io<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>strip())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>p <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> length <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">60</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>length <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    v10 <span style="color:#f92672">=</span> [pow(<span style="color:#ae81ff">10</span>, i, p) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, length)][::reverse]
+</span></span><span style="display:flex;"><span>    v256 <span style="color:#f92672">=</span> [pow(<span style="color:#ae81ff">256</span>, i, p) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, length)][::reverse]
+</span></span><span style="display:flex;"><span>    col <span style="color:#f92672">=</span> [(a <span style="color:#f92672">-</span> b) <span style="color:#f92672">%</span> p <span style="color:#66d9ef">for</span> a, b <span style="color:#f92672">in</span> zip(v10, v256)]
+</span></span><span style="display:flex;"><span>    target <span style="color:#f92672">=</span> (<span style="color:#ae81ff">48</span> <span style="color:#f92672">*</span> (sum(v10) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">53</span> <span style="color:#f92672">*</span> sum(col) <span style="color:#f92672">-</span> <span style="color:#ae81ff">48</span> <span style="color:#f92672">*</span> (sum(v256) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">%</span> p
+</span></span><span style="display:flex;"><span>    base <span style="color:#f92672">=</span> bytes_to_long(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag#&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\7</span><span style="color:#e6db74">f</span><span style="color:#ae81ff">\x7f</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">+</span> (length <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    digits <span style="color:#f92672">=</span> str(base)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(digits)):
+</span></span><span style="display:flex;"><span>        tmp <span style="color:#f92672">=</span> int(digits[:i] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">*</span> (len(digits) <span style="color:#f92672">-</span>i))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> long_to_bytes(tmp)[:<span style="color:#ae81ff">5</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag#&#39;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Found </span><span style="color:#e6db74">{</span>tmp <span style="color:#e6db74">= }</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>		base <span style="color:#f92672">=</span> tmp
+</span></span><span style="display:flex;"><span>		target <span style="color:#f92672">=</span> (target <span style="color:#f92672">-</span> base <span style="color:#f92672">+</span> wild(base) <span style="color:#f92672">%</span> p)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    col <span style="color:#f92672">+=</span> [target]
+</span></span><span style="display:flex;"><span>    L <span style="color:#f92672">=</span> block_matrix(ZZ, [
+</span></span><span style="display:flex;"><span>        [identity_matrix(len(col)), column_matrix(col)],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0</span>, p] 
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    L <span style="color:#f92672">=</span> flatter(L)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> L:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> row[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> row[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> any(<span style="color:#f92672">not</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">&lt;=</span> x <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">4</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> row[:<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span> 
+</span></span><span style="display:flex;"><span>        num <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(str(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> row[:<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>        num2 <span style="color:#f92672">=</span> int(num[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        val <span style="color:#f92672">=</span> base <span style="color:#f92672">+</span> num2
+</span></span><span style="display:flex;"><span>        print(long_to_bytes(val))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">in</span> long_to_bytes(val) <span style="color:#f92672">or</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">in</span> long_to_bytes(val):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            print(eval(long_to_bytes(val)))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">SyntaxError</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>sendline(str(val)<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>        io<span style="color:#f92672">.</span>interactive()
+</span></span><span style="display:flex;"><span>        exit()
+</span></span><span style="display:flex;"><span>        
+</span></span></code></pre></div>
+      </div></div>
+</div>
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="https://zayn.id.vn/posts/2024/2024-12-24-hkcert-quals-2/" class="button inline next">
+        HKCERT CTF Quals 2024 Writeup (Part 2)
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+<style>
+	.table-of-contents {
+    position: fixed;
+    top: 20px;  
+    left: 0;  
+    width: 250px;  
+    margin-left: 50px;  
+    box-sizing: border-box;  
+    padding: 10px;  
+	font-size: 10px;
+  }
+</style>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script>
+	MathJax = {
+
+		tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']],
+			
+		}
+	};
+</script>
+
+
+
+  
+</div>
+
+</body>
+</html>
