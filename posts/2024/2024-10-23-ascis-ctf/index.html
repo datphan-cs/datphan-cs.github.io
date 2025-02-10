@@ -326,10 +326,15 @@
 <h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <h3 id="brainstorm">Brainstorm<a href="#brainstorm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ul>
-<li>Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x (\text{mod }p)$</li>
+<li>Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x \pmod{p}$</li>
 <li>The $H(T, P)$ can be written as follow:
-$$T = (T_0, T_1, &hellip;, T_{127}, 1)\text{ where }1 &lt;T_i &lt; q - 1$$$$P = (P_0, P_1, &hellip;)$$ where $P_i$ is the number representation of each 129 characters in $P$
-$$H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$</li>
+$$\displaylines{
+T = (T_0, T_1, &hellip;, T_{127}, 1)
+\\
+P = (P_0, P_1, &hellip;)
+\\
+H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} \pmod{p}}$$
+where $P_i$ is the number representation of each 129 characters in $P$ and $T_i \in [1, q - 1]$</li>
 <li>In the <code>login</code>, you can spot out that return line looks fishy:<br>
 <code>return pwd_hash in pwd_hashes</code></li>
 <li>If I can enforce a hash collision of hash function $H$, then I can grab the flag as follow:
@@ -343,10 +348,10 @@ $$H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$</li>
 <h3 id="hash-collision">Hash Collision<a href="#hash-collision" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ul>
 <li>Denote $S_i$ as sum of characters at position $i$ of all blocks in $P$, i.e.
-$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &hellip;)$$$$=&gt; H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} (\text{mod } p) = g^{x + \sum_{i=0}^{128}T_iS_i}(\text{mod } p)$$</li>
-<li>Set $h = x + \sum_{i=0}^{128}{T_iS_i} (\text{mod } q)$</li>
+$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &hellip;)$$$$=&gt; H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} = g^{x + \sum_{i=0}^{128}T_iS_i} \pmod{p}$$</li>
+<li>Set $h = x + \sum_{i=0}^{128}{T_iS_i} $</li>
 <li>The target is to find $P&rsquo;$ whose $S&rsquo;$ satisfy the equation:
-$$x + \sum{T_{admin}S&rsquo;} = h_0 = x + \sum{T_{user}S_{user}} (\text{mod } q)$$$$ =&gt; \sum{T_{admin}S&rsquo;} = \sum{T_{user}S_{user}} (\text{mod } q)$$</li>
+$$x + \sum{T_{admin}S&rsquo;} = h_0 = x + \sum{T_{user}S_{user}} \pmod{q} $$$$ =&gt; \sum{T_{admin}S&rsquo;} = \sum{T_{user}S_{user}} \pmod{q} $$</li>
 <li>I have full control over the $P_{user}$, and $T_{user}$ can be retrieved from the server =&gt; Compute the RHS of the equation is trivial</li>
 <li>Since each element in $S&rsquo;$ is sum of characters, it is supposed to be small, while $T_{admin}$ is very huge (range $[1, q - 1]$). This implies the usage of <strong>LLL</strong> algorithm to find such $S'$</li>
 <li>Here is the lattice:

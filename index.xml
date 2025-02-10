@@ -1499,10 +1499,15 @@ $$\Rightarrow s_{PKCS}^{11} - known * 2^{256} = m + k * n$$&lt;/p&gt;
 &lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
 &lt;h3 id=&#34;brainstorm&#34;&gt;Brainstorm&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x (\text{mod }p)$&lt;/li&gt;
+&lt;li&gt;Upon the connection, the server generate a private key $x$ in range $[1, q - 1]$ and compute $y = g^x \pmod{p}$&lt;/li&gt;
 &lt;li&gt;The $H(T, P)$ can be written as follow:
-$$T = (T_0, T_1, &amp;hellip;, T_{127}, 1)\text{ where }1 &amp;lt;T_i &amp;lt; q - 1$$$$P = (P_0, P_1, &amp;hellip;)$$ where $P_i$ is the number representation of each 129 characters in $P$
-$$H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$&lt;/li&gt;
+$$\displaylines{
+T = (T_0, T_1, &amp;hellip;, T_{127}, 1)
+\\
+P = (P_0, P_1, &amp;hellip;)
+\\
+H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} \pmod{p}}$$
+where $P_i$ is the number representation of each 129 characters in $P$ and $T_i \in [1, q - 1]$&lt;/li&gt;
 &lt;li&gt;In the &lt;code&gt;login&lt;/code&gt;, you can spot out that return line looks fishy:&lt;br&gt;
 &lt;code&gt;return pwd_hash in pwd_hashes&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;If I can enforce a hash collision of hash function $H$, then I can grab the flag as follow:
@@ -1516,10 +1521,10 @@ $$H(T, P) = y  \prod_{i=0}\prod_{j=0}^{128}g^{T_jP_{ij}} (\text{mod } p)$$&lt;/l
 &lt;h3 id=&#34;hash-collision&#34;&gt;Hash Collision&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Denote $S_i$ as sum of characters at position $i$ of all blocks in $P$, i.e.
-$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &amp;hellip;)$$$$=&amp;gt; H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} (\text{mod } p) = g^{x + \sum_{i=0}^{128}T_iS_i}(\text{mod } p)$$&lt;/li&gt;
-&lt;li&gt;Set $h = x + \sum_{i=0}^{128}{T_iS_i} (\text{mod } q)$&lt;/li&gt;
+$$S_i = \sum_{j=0}P_{ji}$$$$S = (S_0, S_1, &amp;hellip;)$$$$=&amp;gt; H(T, P) = yg^{\sum_{i=0}^{128}{T_iS_i}} = g^{x + \sum_{i=0}^{128}T_iS_i} \pmod{p}$$&lt;/li&gt;
+&lt;li&gt;Set $h = x + \sum_{i=0}^{128}{T_iS_i} $&lt;/li&gt;
 &lt;li&gt;The target is to find $P&amp;rsquo;$ whose $S&amp;rsquo;$ satisfy the equation:
-$$x + \sum{T_{admin}S&amp;rsquo;} = h_0 = x + \sum{T_{user}S_{user}} (\text{mod } q)$$$$ =&amp;gt; \sum{T_{admin}S&amp;rsquo;} = \sum{T_{user}S_{user}} (\text{mod } q)$$&lt;/li&gt;
+$$x + \sum{T_{admin}S&amp;rsquo;} = h_0 = x + \sum{T_{user}S_{user}} \pmod{q} $$$$ =&amp;gt; \sum{T_{admin}S&amp;rsquo;} = \sum{T_{user}S_{user}} \pmod{q} $$&lt;/li&gt;
 &lt;li&gt;I have full control over the $P_{user}$, and $T_{user}$ can be retrieved from the server =&amp;gt; Compute the RHS of the equation is trivial&lt;/li&gt;
 &lt;li&gt;Since each element in $S&amp;rsquo;$ is sum of characters, it is supposed to be small, while $T_{admin}$ is very huge (range $[1, q - 1]$). This implies the usage of &lt;strong&gt;LLL&lt;/strong&gt; algorithm to find such $S&#39;$&lt;/li&gt;
 &lt;li&gt;Here is the lattice:
